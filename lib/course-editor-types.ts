@@ -1,0 +1,103 @@
+// ─── Course Editor Types ─────────────────────────────────────────────────────
+
+export type StepType = 'info' | 'video' | 'question' | 'file'
+export type QuestionType = 'SINGLE_CHOICE' | 'MULTIPLE_CHOICE' | 'POSITIONING'
+export type CourseStatus = 'active' | 'draft' | 'archived'
+
+// ─── question / Question types ────────────────────────────────────────────────────
+
+export interface QuestionOption {
+  id: number
+  text: string
+  isCorrect?: boolean        // SINGLE_CHOICE / MULTIPLE_CHOICE
+  correctPosition?: number   // POSITIONING
+}
+
+export interface QuestionPayload {
+  type: QuestionType
+  options: QuestionOption[]
+}
+
+export interface EditorQuestion {
+  id: number | string
+  type: QuestionType
+  questionText: string
+  points: number
+  payloads: QuestionPayload[]
+}
+
+// ─── Step ────────────────────────────────────────────────────────────────────
+
+export interface EditorStep {
+  id: number
+  title: string
+  type: StepType
+  position: number
+  points: number
+  isAnswered: boolean
+  userPoints: number
+  data: {
+    // info / video
+    content?: string
+    // video
+    videoUrl?: string
+    // question
+    questions?: EditorQuestion[]
+  }
+}
+
+// ─── Chapter ─────────────────────────────────────────────────────────────────
+
+export interface EditorChapter {
+  id: number
+  title: string
+  position: number
+  maxPoints: number
+  userPoints?: number
+  flashCards?: unknown[]
+  steps: EditorStep[]
+}
+
+// ─── Module ──────────────────────────────────────────────────────────────────
+
+export interface EditorModule {
+  id: number
+  title: string
+  position: number
+  maxPoints?: number
+  userPoints?: number
+  chapters: EditorChapter[]
+}
+
+// ─── Full Course ──────────────────────────────────────────────────────────────
+
+export interface EditorCourse {
+  id: number
+  title: string
+  info: string
+  usersCount: number
+  progress: number
+  mainSourceUrl: string
+  departaments: string[]
+  coins: number
+  skills: string[]
+  modules: EditorModule[]
+  maxPoints: number
+  maxAttempts: number
+  passingPercentage: number
+  badgeUrl: string
+  imageUrl: string
+}
+
+export interface CourseSettings {
+  title: string
+  description: string
+  status: CourseStatus
+  passingPercentage: number
+  maxAttempts: number
+  departmentIds: string[]
+  certificationName: string
+  certificationValidityDays: number | null
+  isCompliance: boolean
+  dueDate: string
+}
