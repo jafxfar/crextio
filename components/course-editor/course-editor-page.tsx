@@ -149,12 +149,12 @@ export function CourseEditorPage() {
       {/* Stats bar */}
       <div className="flex-shrink-0 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 mb-5">
         {[
-          { icon: Layers,    label: 'Modules',   value: totalModules,   color: 'text-foreground bg-primary/20' },
-          { icon: BookOpen,  label: 'Chapters',  value: totalChapters,  color: 'text-foreground bg-secondary' },
-          { icon: FileText,  label: 'Steps',     value: totalSteps,     color: 'text-foreground bg-secondary' },
-          { icon: HelpCircle,label: 'Questions', value: totalQuestions, color: 'text-amber-700 bg-amber-50' },
-          { icon: Video,     label: 'Videos',    value: videoCount,     color: 'text-foreground bg-nav-pill/10' },
-          { icon: Upload,    label: 'File Steps',value: fileCount,      color: 'text-emerald-700 bg-emerald-50' },
+          { icon: Layers, label: 'Modules', value: totalModules, color: 'text-foreground bg-primary/20' },
+          { icon: BookOpen, label: 'Chapters', value: totalChapters, color: 'text-foreground bg-secondary' },
+          { icon: FileText, label: 'Steps', value: totalSteps, color: 'text-foreground bg-secondary' },
+          { icon: HelpCircle, label: 'Questions', value: totalQuestions, color: 'text-amber-700 bg-amber-50' },
+          { icon: Video, label: 'Videos', value: videoCount, color: 'text-foreground bg-nav-pill/10' },
+          { icon: Upload, label: 'File Steps', value: fileCount, color: 'text-emerald-700 bg-emerald-50' },
         ].map(({ icon: Icon, label, value, color }) => (
           <div
             key={label}

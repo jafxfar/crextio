@@ -175,10 +175,10 @@ export function ChapterEditor({ chapter, onChange, onDelete }: ChapterEditorProp
             {(['info', 'video', 'question', 'file'] as StepType[]).map((type) => {
               const labels: Record<StepType, string> = { info: '+ Info', video: '+ Video', question: '+ Question', file: '+ File' }
               const colors: Record<StepType, string> = {
-                info:     'text-foreground border-border hover:bg-secondary',
-                video:    'text-foreground border-border hover:bg-secondary',
+                info: 'text-foreground border-border hover:bg-secondary',
+                video: 'text-foreground border-border hover:bg-secondary',
                 question: 'text-amber-700 border-amber-200 hover:bg-amber-50',
-                file:     'text-emerald-700 border-emerald-200 hover:bg-emerald-50',
+                file: 'text-emerald-700 border-emerald-200 hover:bg-emerald-50',
               }
               return (
                 <button

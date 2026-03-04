@@ -1,5 +1,5 @@
 import { DashboardShell } from '@/components/shell/dashboard-shell'
-import { CoursesPage } from '@/components/dashboard/courses'
+import { CoursesPage } from '@/components/course/courses'
 
 export default function Page() {
   return (

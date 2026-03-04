@@ -5,11 +5,11 @@ import { cn } from '@/lib/utils'
 import { globalComplianceRate } from '@/lib/data'
 
 import { SectionCard } from '@/components/ui/metric-card'
-import RecentOrders from "@/components/ecommerce/RecentOrders";
-import { LeaderboardList } from '../ecommerce/LeaderboardList';
-import MonthlyTarget from "@/components/ecommerce/MonthlyTarget";
-import MonthlySalesChart from "@/components/ecommerce/MonthlySalesChart";
-import { EcommerceMetrics } from "@/components/ecommerce/EcommerceMetrics";
+import RecentOrders from "@/components/dashboard/RecentOrders";
+import { LeaderboardList } from './LeaderboardList';
+import MonthlyTarget from "@/components/dashboard/MonthlyTarget";
+import MonthlySalesChart from "@/components/dashboard/MonthlySalesChart";
+import { EcommerceMetrics } from "@/components/dashboard/EcommerceMetrics";
 
 
 function StatPills() {
