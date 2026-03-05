@@ -10,7 +10,7 @@ interface DashboardShellProps {
 
 export function DashboardShell({ children, title, subtitle }: DashboardShellProps) {
   return (
-    <div className="min-h-screen w-full " style={{ background: 'linear-gradient(150deg, #e3e4e6 30%, #daf064 100%)' }}>
+    <div className="min-h-screen w-full " style={{ background: 'linear-gradient(150deg, #e3e4e6 30%, #ddff00 100%)' }}>
       <TopNav />
       <main className="max-w-[1400px] mx-auto px-6 py-8">
         {/* Page header */}

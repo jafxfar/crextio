@@ -29,7 +29,7 @@ function StatPills() {
             'px-4 py-1.5 rounded-full text-sm font-semibold',
             s.dark
               ? 'bg-nav-pill text-white'
-              : 'bg-primary text-primary-foreground',
+              : 'bg-[#ddff00] text-primary-foreground',
           )}>
             {s.value}
           </span>
@@ -74,7 +74,6 @@ export function DashboardOverview() {
           <SectionCard
             title="XP Leaderboard"
             subtitle="Top performers this quarter"
-            dark
             action={
               <span className="inline-flex items-center gap-1 text-[11px] bg-primary/20 text-primary px-2.5 py-1 rounded-full font-medium">
                 <Trophy className="w-3 h-3" /> Q1 2025

@@ -25,7 +25,7 @@ export function CourseCard({ course }: { course: typeof courses[0] }) {
             course.completionRate >= 60 ? 'bg-primary' : 'bg-red-400'
 
     return (
-        <div className="bg-card border border-border rounded-[16px] p-5 shadow-[0_2px_8px_rgba(0,0,0,0.05)] hover:shadow-[0_4px_16px_rgba(0,0,0,0.09)] transition-all duration-200 flex flex-col gap-4 group">
+        <div className="border rounded-2xl p-5 border-gray-200 bg-white transition-all duration-200 flex flex-col gap-4 group">
 
             {/* Header */}
             <div className="flex items-start justify-between gap-2">

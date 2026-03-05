@@ -16,17 +16,17 @@ export function LeaderboardList() {
                 return (
                     <div key={user.id} className="flex items-center gap-3">
                         <span
-                            className="w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold text-white flex-shrink-0"
+                            className="w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold text-gray-600 flex-shrink-0"
                             style={{ backgroundColor: RANK_COLORS[i] }}
                         >
                             {i + 1}
                         </span>
                         <div className="w-7 h-7 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0">
-                            <span className="text-[10px] font-bold text-card-dark-foreground">{user.avatarInitials}</span>
+                            <span className="text-[10px] font-bold text-gray-600">{user.avatarInitials}</span>
                         </div>
                         <div className="flex-1 min-w-0">
                             <div className="flex items-center justify-between mb-1">
-                                <span className="text-[12px] font-medium text-card-dark-foreground truncate">{user.name}</span>
+                                <span className="text-[12px] font-medium text-gray-600 truncate">{user.name}</span>
                                 <span className="text-[11px] font-bold text-primary ml-2 flex items-center gap-0.5 flex-shrink-0">
                                     <Zap className="w-2.5 h-2.5" />{(user.xp / 1000).toFixed(1)}k
                                 </span>

@@ -58,8 +58,8 @@ interface SectionCardProps {
 export function SectionCard({ title, subtitle, action, children, className, noPadding, dark, headerless }: SectionCardProps) {
   return (
     <div className={cn(
-      'rounded-[16px] shadow-[0_2px_8px_rgba(0,0,0,0.06)] border overflow-hidden',
-      dark ? 'bg-card-dark border-card-dark' : 'bg-card border-border',
+      'rounded-2xl border  p-5 md:p-6 overflow-hidden',
+      dark ? 'bg-white/[0.03] border-gray-800' : 'border-gray-200 bg-white',
       className,
     )}>
       {!headerless && (

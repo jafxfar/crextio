@@ -5,7 +5,7 @@ export default function DashboardPage() {
   return (
     <DashboardShell
       title="Hello, Admin"
-      subtitle="ForgeLearn Enterprise · Q1 2025 Overview"
+      subtitle="Jupiter is running smoothly. Here's what's happening with your company today."
     >
       <DashboardOverview />
     </DashboardShell>

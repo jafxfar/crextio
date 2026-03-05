@@ -1,6 +1,6 @@
 // ─── Course Editor Types ─────────────────────────────────────────────────────
 
-export type StepType = 'info' | 'video' | 'question' | 'file'
+export type StepType = 'info' | 'video' | 'quiz' | 'file'
 export type QuestionType = 'SINGLE_CHOICE' | 'MULTIPLE_CHOICE' | 'POSITIONING'
 export type CourseStatus = 'active' | 'draft' | 'archived'
 
@@ -37,10 +37,15 @@ export interface EditorStep {
   isAnswered: boolean
   userPoints: number
   data: {
-    // info / video
+    // info
     content?: string
     // video
     videoUrl?: string
+    // file / document
+    fileUrl?: string
+    fileName?: string
+    fileSize?: number       // bytes
+    fileMimeType?: string
     // question
     questions?: EditorQuestion[]
   }

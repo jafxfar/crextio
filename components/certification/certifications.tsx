@@ -31,8 +31,8 @@ export function CertificationsPage() {
           { label: 'Expired', value: expired, icon: <XCircle className="w-4 h-4 text-white" />, bg: 'bg-red-500' },
           { label: 'Global Compliance', value: `${globalComplianceRate}%`, icon: <ShieldCheck className="w-4 h-4 text-primary-foreground" />, bg: 'bg-nav-pill' },
         ].map(stat => (
-          <div key={stat.label} className="bg-card rounded-[16px] border border-border p-5 shadow-[0_1px_4px_rgba(0,0,0,0.06)] flex items-center gap-4">
-            <div className={cn('w-10 h-10 rounded-[10px] flex items-center justify-center flex-shrink-0', stat.bg)}>
+          <div key={stat.label} className="border-gray-200 bg-white p-5 rounded-2xl shadow-[0_1px_4px_rgba(0,0,0,0.06)] flex items-center gap-4">
+            <div className={cn('w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0', stat.bg)}>
               {stat.icon}
             </div>
             <div>

@@ -9,9 +9,8 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: 'ForgeLearn LMS — Enterprise Training Platform',
+  title: 'Jupiter — Enterprise Training Platform',
   description: 'Internal learning management system for manufacturing compliance, certifications, and workforce development.',
-  generator: 'v0.app',
 }
 
 export default function RootLayout({
