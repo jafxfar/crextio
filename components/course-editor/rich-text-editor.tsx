@@ -10,6 +10,7 @@ import CodeBlockLowlight from '@tiptap/extension-code-block-lowlight'
 import Placeholder from '@tiptap/extension-placeholder'
 import { createLowlight, common } from 'lowlight'
 import { cn } from '@/lib/utils'
+import { AiPromptInput } from './ai-prompt-input'
 // ─── Lowlight setup ───────────────────────────────────────────────────────────
 
 const lowlight = createLowlight(common)
@@ -90,7 +91,11 @@ function Sep() {
 
 // ─── Toolbar ──────────────────────────────────────────────────────────────────
 
-function Toolbar({ editor }: { editor: ReturnType<typeof useEditor> | null }) {
+function Toolbar({
+  editor,
+}: {
+  editor: ReturnType<typeof useEditor> | null
+}) {
   if (!editor) return null
 
   const setLink = () => {
@@ -321,7 +326,15 @@ export function RichTextEditor({ content, onChange, placeholder = 'Start writing
     <div className="flex flex-col border border-border rounded-2xl overflow-hidden bg-card shadow-sm">
       <Toolbar editor={editor} />
 
-      {/* Word count bar */}
+      {/* AI prompt bar — sits between toolbar and writing area */}
+      <AiPromptInput
+        onInsert={(html) => {
+          if (!editor) return
+          editor.chain().focus('end').insertContent(html).run()
+        }}
+      />
+
+      {/* Writing area */}
       <div className="relative flex-1">
         <EditorContent editor={editor} className="w-full" />
       </div>

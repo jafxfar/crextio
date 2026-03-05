@@ -29,6 +29,7 @@ import {
 import { cn } from '@/lib/utils'
 import type { EditorChapter, EditorStep } from '@/lib/course-editor-types'
 import { RichTextEditor } from './rich-text-editor'
+import { QuizStepEditor } from './step-editors/quiz-step-editor'
 
 const stepMeta = {
   info:  { label: 'Text',  icon: BookOpen,  color: 'bg-blue-500/15 text-blue-600'   },
@@ -750,6 +751,8 @@ export function StepsPanel({ chapter, moduleTitle, moduleIndex, onChange }: Step
       return <VideoStepEditor step={activeStep} onBack={() => setActiveStepId(null)} onChange={handleStepUpdate} />
     if (activeStep.type === 'file')
       return <FileStepEditor step={activeStep} onBack={() => setActiveStepId(null)} onChange={handleStepUpdate} />
+    if (activeStep.type === 'quiz')
+      return <QuizStepEditor step={activeStep} onBack={() => setActiveStepId(null)} onChange={handleStepUpdate} />
     return <PlaceholderStepEditor step={activeStep} onBack={() => setActiveStepId(null)} />
   }
 

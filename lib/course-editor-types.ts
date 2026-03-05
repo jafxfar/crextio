@@ -4,26 +4,35 @@ export type StepType = 'info' | 'video' | 'quiz' | 'file'
 export type QuestionType = 'SINGLE_CHOICE' | 'MULTIPLE_CHOICE' | 'POSITIONING'
 export type CourseStatus = 'active' | 'draft' | 'archived'
 
-// ─── question / Question types ────────────────────────────────────────────────────
+// ─── Question types ───────────────────────────────────────────────────────────
 
-export interface QuestionOption {
+/** Option for SINGLE_CHOICE / MULTIPLE_CHOICE */
+export interface ChoiceOption {
   id: number
   text: string
-  isCorrect?: boolean        // SINGLE_CHOICE / MULTIPLE_CHOICE
-  correctPosition?: number   // POSITIONING
+  isCorrect: boolean
 }
 
-export interface QuestionPayload {
-  type: QuestionType
-  options: QuestionOption[]
+/** Option for ORDERING (POSITIONING) */
+export interface OrderingOption {
+  id: number
+  text: string
+  correctOrder: number   // 1-based position in the correct sequence
 }
+
+/** Discriminated union payload – mirrors the diagram's Abstract Payload */
+export type QuestionPayload =
+  | { type: 'SINGLE_CHOICE';   options: ChoiceOption[]   }
+  | { type: 'MULTIPLE_CHOICE'; options: ChoiceOption[]   }
+  | { type: 'POSITIONING';     options: OrderingOption[] }
 
 export interface EditorQuestion {
   id: number | string
+  moduleId: number          // which module this question belongs to (backend ref)
   type: QuestionType
   questionText: string
   points: number
-  payloads: QuestionPayload[]
+  payload: QuestionPayload  // singular – one payload per question matches the diagram
 }
 
 // ─── Step ────────────────────────────────────────────────────────────────────
@@ -37,7 +46,7 @@ export interface EditorStep {
   isAnswered: boolean
   userPoints: number
   data: {
-    // info
+    // info / text
     content?: string
     // video
     videoUrl?: string
@@ -46,7 +55,9 @@ export interface EditorStep {
     fileName?: string
     fileSize?: number       // bytes
     fileMimeType?: string
-    // question
+    // code template (from diagram StepData)
+    codeTemplate?: string
+    // quiz – list of questions for this step
     questions?: EditorQuestion[]
   }
 }
