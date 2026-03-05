@@ -25,11 +25,14 @@ import {
   FileArchive,
   File,
   Download,
+  Check,
 } from 'lucide-react'
+import Image from 'next/image'
 import { cn } from '@/lib/utils'
 import type { EditorChapter, EditorStep } from '@/lib/course-editor-types'
 import { RichTextEditor } from './rich-text-editor'
 import { QuizStepEditor } from './step-editors/quiz-step-editor'
+import { useSave } from '@/hooks/use-save'
 
 const stepMeta = {
   info:  { label: 'Text',  icon: BookOpen,  color: 'bg-blue-500/15 text-blue-600'   },
@@ -165,10 +168,19 @@ function AddStepModal({ open, onClose, onCreate }: {
 
 // ─── Step editor header (shared) ─────────────────────────────────────────────
 
-function EditorHeader({ step, onBack, accentIcon, accentClass }: {
-  step: EditorStep; onBack: () => void; accentIcon: React.ElementType; accentClass: string
+function EditorHeader({ step, onBack, accentIcon, accentClass, onSave }: {
+  step: EditorStep; onBack: () => void; accentIcon: React.ElementType; accentClass: string; onSave: () => void
 }) {
+  const { saveState, triggerSave } = useSave()
   const Icon = accentIcon
+  const isSaving = saveState === 'saving'
+  const isSaved  = saveState === 'saved'
+
+  function handleSave() {
+    onSave()
+    triggerSave()
+  }
+
   return (
     <div className="bg-card border border-border rounded-2xl shadow-sm overflow-hidden">
       <div className="flex items-center gap-3 px-5 py-3.5 bg-foreground">
@@ -186,6 +198,41 @@ function EditorHeader({ step, onBack, accentIcon, accentClass }: {
             {step.points} pts
           </span>
         )}
+
+        {/* ── Save button ── */}
+        <button
+          type="button"
+          onClick={handleSave}
+          disabled={isSaving}
+          aria-label="Save step"
+          className={cn(
+            'flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-[12px] font-semibold transition-all shrink-0 select-none',
+            isSaved
+              ? 'bg-green-500/20 text-green-400'
+              : 'bg-background/15 hover:bg-background/25 text-background disabled:opacity-60',
+          )}
+        >
+          {isSaving ? (
+            <>
+              <Image
+                src="/logo.svg"
+                alt="Saving…"
+                width={14}
+                height={14}
+                className="animate-save-logo"
+                key={String(isSaving)}
+              />
+              Saving…
+            </>
+          ) : isSaved ? (
+            <>
+              <Check className="w-3.5 h-3.5" />
+              Saved
+            </>
+          ) : (
+            'Save'
+          )}
+        </button>
       </div>
     </div>
   )
@@ -198,7 +245,8 @@ function TextStepEditor({ step, onBack, onChange }: {
 }) {
   return (
     <div className="flex flex-col gap-4">
-      <EditorHeader step={step} onBack={onBack} accentIcon={BookOpen} accentClass="bg-blue-500/20 text-blue-600" />
+      <EditorHeader step={step} onBack={onBack} accentIcon={BookOpen} accentClass="bg-blue-500/20 text-blue-600"
+        onSave={() => onChange({ ...step })} />
       <RichTextEditor
         content={step.data.content ?? ''}
         onChange={(html) => onChange({ ...step, data: { ...step.data, content: html } })}
@@ -376,7 +424,8 @@ function VideoStepEditor({ step, onBack, onChange }: {
 
   return (
     <div className="flex flex-col gap-4">
-      <EditorHeader step={step} onBack={onBack} accentIcon={Video} accentClass="bg-purple-500/20 text-purple-600" />
+      <EditorHeader step={step} onBack={onBack} accentIcon={Video} accentClass="bg-purple-500/20 text-purple-600"
+        onSave={() => onChange({ ...step, data: { ...step.data, videoUrl: committed } })} />
 
       <div className="bg-card border border-border rounded-2xl shadow-sm overflow-hidden">
         {/* URL input row */}
@@ -600,7 +649,8 @@ function FileStepEditor({ step, onBack, onChange }: {
 
   return (
     <div className="flex flex-col gap-4">
-      <EditorHeader step={step} onBack={onBack} accentIcon={FileUp} accentClass="bg-green-500/20 text-green-600" />
+      <EditorHeader step={step} onBack={onBack} accentIcon={FileUp} accentClass="bg-green-500/20 text-green-600"
+        onSave={() => onChange({ ...step, data: { ...step.data, fileUrl: committed, fileName: nameInput.trim() || undefined } })} />
 
       <div className="bg-card border border-border rounded-2xl shadow-sm overflow-hidden">
         {/* URL + name inputs */}
@@ -701,7 +751,7 @@ function PlaceholderStepEditor({ step, onBack }: { step: EditorStep; onBack: () 
   const Icon = meta.icon
   return (
     <div className="flex flex-col gap-4">
-      <EditorHeader step={step} onBack={onBack} accentIcon={Icon} accentClass={meta.color} />
+      <EditorHeader step={step} onBack={onBack} accentIcon={Icon} accentClass={meta.color} onSave={() => {}} />
       <div className="bg-card border border-border rounded-2xl shadow-sm flex flex-col items-center justify-center py-20 text-center px-8">
         <div className={cn('w-12 h-12 rounded-2xl flex items-center justify-center mb-4', meta.color)}>
           <Icon className="w-6 h-6" />

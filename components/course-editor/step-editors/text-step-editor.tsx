@@ -19,6 +19,7 @@ export function TextStepEditor({ step, onBack, onChange }: TextStepEditorProps) 
         onBack={onBack}
         accentIcon={BookOpen}
         accentClass="bg-blue-500/20 text-blue-600"
+        onSave={() => onChange({ ...step })}
       />
       <RichTextEditor
         content={step.data.content ?? ''}

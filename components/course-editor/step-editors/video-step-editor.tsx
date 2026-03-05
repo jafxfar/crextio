@@ -160,7 +160,8 @@ export function VideoStepEditor({ step, onBack, onChange }: VideoStepEditorProps
 
   return (
     <div className="flex flex-col gap-4">
-      <EditorHeader step={step} onBack={onBack} accentIcon={Video} accentClass="bg-purple-500/20 text-purple-600" />
+      <EditorHeader step={step} onBack={onBack} accentIcon={Video} accentClass="bg-purple-500/20 text-purple-600"
+        onSave={() => onChange({ ...step, data: { ...step.data, videoUrl: committed } })} />
 
       <div className="bg-card border border-border rounded-2xl shadow-sm overflow-hidden">
         {/* Input */}

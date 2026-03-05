@@ -123,6 +123,7 @@ export function QuizStepEditor({ step, onBack, onChange }: QuizStepEditorProps) 
         onBack={onBack}
         accentIcon={HelpCircle}
         accentClass="bg-amber-500/20 text-amber-600"
+        onSave={() => onChange({ ...step, points: question.points, data: { ...step.data, questions: [question] } })}
       />
 
       <div className="bg-card border border-border rounded-2xl shadow-sm overflow-hidden">

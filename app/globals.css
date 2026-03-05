@@ -287,3 +287,14 @@
     transform: translate(-60%, -60%) scale(1);
   }
 }
+
+/* Save logo spin: accelerate then decelerate */
+@keyframes save-logo-spin {
+  0%   { transform: rotate(0deg);    animation-timing-function: cubic-bezier(0.4, 0, 1, 1);   }
+  40%  { transform: rotate(540deg);  animation-timing-function: cubic-bezier(0, 0, 0.2, 1);   }
+  100% { transform: rotate(1080deg); }
+}
+
+.animate-save-logo {
+  animation: save-logo-spin 1.6s ease-in-out forwards;
+}
