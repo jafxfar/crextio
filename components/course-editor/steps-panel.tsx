@@ -32,6 +32,7 @@ import { cn } from '@/lib/utils'
 import type { EditorChapter, EditorStep } from '@/lib/course-editor-types'
 import { RichTextEditor } from './rich-text-editor'
 import { QuizStepEditor } from './step-editors/quiz-step-editor'
+import { AudioGeneratorPanel } from './audio-generator-panel'
 import { useSave } from '@/hooks/use-save'
 
 const stepMeta = {
@@ -251,6 +252,12 @@ function TextStepEditor({ step, onBack, onChange }: {
         content={step.data.content ?? ''}
         onChange={(html) => onChange({ ...step, data: { ...step.data, content: html } })}
         placeholder="Start writing the content for this step…"
+      />
+      <AudioGeneratorPanel
+        htmlContent={step.data.content ?? ''}
+        onAudioGenerated={(dataUrl) =>
+          onChange({ ...step, data: { ...step.data, audioUrl: dataUrl } })
+        }
       />
     </div>
   )
@@ -714,7 +721,7 @@ function FileStepEditor({ step, onBack, onChange }: {
           </div>
         </div>
 
-        {/* Preview area */}
+          {/* Preview area */}
         <div className="p-5">
           {!committed ? (
             <div className="flex flex-col items-center justify-center py-14 rounded-2xl border-2 border-dashed border-border text-center">
@@ -740,11 +747,19 @@ function FileStepEditor({ step, onBack, onChange }: {
           )}
         </div>
       </div>
+
+      {/* Audio narration — available when a file URL is set */}
+      {committed && isValidUrl && (
+        <AudioGeneratorPanel
+          sourceUrl={committed}
+          onAudioGenerated={(dataUrl) =>
+            onChange({ ...step, data: { ...step.data, audioUrl: dataUrl } })
+          }
+        />
+      )}
     </div>
   )
-}
-
-// ─── Generic placeholder ──────────────────────────────────────────────────────
+}// ─── Generic placeholder ──────────────────────────────────────────────────────
 
 function PlaceholderStepEditor({ step, onBack }: { step: EditorStep; onBack: () => void }) {
   const meta = getMeta(step.type)

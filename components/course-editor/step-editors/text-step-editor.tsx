@@ -4,6 +4,7 @@ import { BookOpen } from 'lucide-react'
 import type { EditorStep } from '@/lib/course-editor-types'
 import { EditorHeader } from '../step-editor-header'
 import { RichTextEditor } from '../rich-text-editor'
+import { AudioGeneratorPanel } from '../audio-generator-panel'
 
 interface TextStepEditorProps {
   step: EditorStep
@@ -25,6 +26,12 @@ export function TextStepEditor({ step, onBack, onChange }: TextStepEditorProps) 
         content={step.data.content ?? ''}
         onChange={(html) => onChange({ ...step, data: { ...step.data, content: html } })}
         placeholder="Start writing the content for this step…"
+      />
+      <AudioGeneratorPanel
+        htmlContent={step.data.content ?? ''}
+        onAudioGenerated={(dataUrl) =>
+          onChange({ ...step, data: { ...step.data, audioUrl: dataUrl } })
+        }
       />
     </div>
   )

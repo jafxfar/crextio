@@ -59,6 +59,8 @@ export interface EditorStep {
     codeTemplate?: string
     // quiz – list of questions for this step
     questions?: EditorQuestion[]
+    // ai-generated audio narration (base64 data URL or remote URL)
+    audioUrl?: string
   }
 }
 
