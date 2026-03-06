@@ -11,6 +11,7 @@ import { Avatar } from '../ui/avatar'
 import { cn } from '@/lib/utils'
 import { AvatarImage } from '@radix-ui/react-avatar'
 import LogoText from '@/public/logo_title.svg'
+import AvatarKhusrav from '@/public/khusrav_ava.png'
 const navItems = [
   { href: '/', label: 'Дашборд' },
   { href: '/users', label: 'Пользователи' },
@@ -81,7 +82,7 @@ export function TopNav() {
         {/* Avatar */}
         <button className="w-[46.5px] h-[46.5px] rounded-full bg-white flex items-center justify-center">
           <Avatar className="w-full h-full rounded-full">
-            <AvatarImage src={"https://avatars.githubusercontent.com/u/12345678?v=4"} />
+            <AvatarImage src={AvatarKhusrav.src} />
           </Avatar >
         </button>
       </div>
