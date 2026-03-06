@@ -2,14 +2,17 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { useState } from 'react'
 import {
   Settings,
   Bell,
   GraduationCap,
+  X,
 } from 'lucide-react'
 import { Avatar } from '../ui/avatar'
 import { cn } from '@/lib/utils'
 import { AvatarImage } from '@radix-ui/react-avatar'
+import Image from 'next/image'
 import LogoText from '@/public/logo_title.svg'
 import AvatarKhusrav from '@/public/khusrav_ava.png'
 const navItems = [
@@ -24,8 +27,10 @@ const navItems = [
 
 export function TopNav() {
   const pathname = usePathname()
+  const [avatarOpen, setAvatarOpen] = useState(false)
 
   return (
+    <>
     <header className="sticky top-0 z-50 h-18 backdrop-blur-md border-b border-border/30 flex items-center px-10 gap-2">
       {/* Logo */}
       <Link href="/" className="flex items-center gap-2.5 flex-1 shrink-0">
@@ -80,12 +85,41 @@ export function TopNav() {
         </button>
 
         {/* Avatar */}
-        <button className="w-[46.5px] h-[46.5px] rounded-full bg-white flex items-center justify-center">
-          <Avatar className="w-full h-full rounded-full">
+        <button
+          onClick={() => setAvatarOpen(true)}
+          className="w-[46.5px] h-[46.5px] rounded-full bg-white flex items-center justify-center"
+          aria-label="Открыть фото профиля"
+        >
+          <Avatar className="w-full h-full rounded-full cursor-pointer">
             <AvatarImage src={AvatarKhusrav.src} />
           </Avatar >
         </button>
       </div>
     </header>
+
+    {/* Avatar lightbox modal — outside header so fixed positioning works correctly */}
+    {avatarOpen && (
+      <div
+        role="dialog"
+        aria-modal="true"
+        aria-label="Фото профиля"
+        className="fixed inset-0 z-100 flex items-center justify-center bg-black/60 backdrop-blur-sm"
+        onClick={() => setAvatarOpen(false)}
+      >
+        <div
+          className="relative"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <Image
+            src={AvatarKhusrav}
+            alt="Аватарка пользователя"
+            width={320}
+            height={320}
+            className="rounded-full object-cover shadow-2xl"
+          />
+        </div>
+      </div>
+    )}
+    </>
   )
 }
