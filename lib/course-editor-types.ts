@@ -64,6 +64,14 @@ export interface EditorStep {
   }
 }
 
+// ─── Flash Cards ─────────────────────────────────────────────────────────────
+
+export interface FlashCard {
+  id: string
+  front: string   // key concept / term
+  back: string    // explanation / detail
+}
+
 // ─── Chapter ─────────────────────────────────────────────────────────────────
 
 export interface EditorChapter {
@@ -72,7 +80,7 @@ export interface EditorChapter {
   position: number
   maxPoints: number
   userPoints?: number
-  flashCards?: unknown[]
+  flashCards?: FlashCard[]
   steps: EditorStep[]
 }
 

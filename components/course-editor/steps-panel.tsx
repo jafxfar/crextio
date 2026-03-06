@@ -33,6 +33,7 @@ import type { EditorChapter, EditorStep } from '@/lib/course-editor-types'
 import { RichTextEditor } from './rich-text-editor'
 import { QuizStepEditor } from './step-editors/quiz-step-editor'
 import { AudioGeneratorPanel } from './audio-generator-panel'
+import { FlashcardGeneratorPanel } from './flashcard-generator-panel'
 import { useSave } from '@/hooks/use-save'
 
 const stepMeta = {
@@ -785,9 +786,11 @@ interface StepsPanelProps {
   moduleTitle: string
   moduleIndex: number
   onChange: (steps: EditorStep[]) => void
+  /** Called when chapter-level data (e.g. flashCards) changes */
+  onChapterChange?: (updated: EditorChapter) => void
 }
 
-export function StepsPanel({ chapter, moduleTitle, moduleIndex, onChange }: StepsPanelProps) {
+export function StepsPanel({ chapter, moduleTitle, moduleIndex, onChange, onChapterChange }: StepsPanelProps) {
   const [addOpen, setAddOpen] = useState(false)
   const [activeStepId, setActiveStepId] = useState<number | null>(null)
 
@@ -823,43 +826,55 @@ export function StepsPanel({ chapter, moduleTitle, moduleIndex, onChange }: Step
 
   // ── Steps list view ──
   return (
-    <div className="bg-card border border-border rounded-2xl shadow-sm overflow-hidden">
-      <div className="flex items-center justify-between px-6 py-4 border-b border-border bg-foreground">
-        <div className="flex flex-col gap-0.5">
-          <span className="text-[10px] font-semibold text-background/50 uppercase tracking-wider">
-            {moduleIndex}. {moduleTitle}
-          </span>
-          <h2 className="text-[15px] font-bold text-background leading-tight">{chapter.title}</h2>
-        </div>
-        <button type="button" onClick={() => setAddOpen(true)}
-          className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-background/15 hover:bg-background/25 text-background text-[12px] font-semibold transition-all">
-          <PlusCircle className="w-3.5 h-3.5" /> Add Step
-        </button>
-      </div>
-
-      <div className="p-5 flex flex-col gap-3">
-        {chapter.steps.length === 0 ? (
-          <div className="flex flex-col items-center justify-center py-16 text-center">
-            <div className="w-12 h-12 rounded-2xl bg-secondary flex items-center justify-center mb-3">
-              <HelpCircle className="w-6 h-6 text-muted-foreground/40" />
-            </div>
-            <p className="text-[13px] font-semibold text-foreground mb-1">No steps yet</p>
-            <p className="text-[12px] text-muted-foreground mb-4">Add your first step to this chapter.</p>
-            <button type="button" onClick={() => setAddOpen(true)}
-              className="flex items-center gap-1.5 px-4 py-2 bg-foreground text-background rounded-xl text-[12px] font-semibold hover:opacity-80 transition-all">
-              <PlusCircle className="w-3.5 h-3.5" /> Add First Step
-            </button>
+    <div className="flex flex-col gap-4">
+      <div className="bg-card border border-border rounded-2xl shadow-sm overflow-hidden">
+        <div className="flex items-center justify-between px-6 py-4 border-b border-border bg-foreground">
+          <div className="flex flex-col gap-0.5">
+            <span className="text-[10px] font-semibold text-background/50 uppercase tracking-wider">
+              {moduleIndex}. {moduleTitle}
+            </span>
+            <h2 className="text-[15px] font-bold text-background leading-tight">{chapter.title}</h2>
           </div>
-        ) : (
-          chapter.steps.map((step, idx) => (
-            <StepRow key={step.id} step={step} index={idx}
-              onOpen={() => setActiveStepId(step.id)}
-              onDelete={() => handleStepDelete(step.id)} />
-          ))
-        )}
+          <button type="button" onClick={() => setAddOpen(true)}
+            className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-background/15 hover:bg-background/25 text-background text-[12px] font-semibold transition-all">
+            <PlusCircle className="w-3.5 h-3.5" /> Add Step
+          </button>
+        </div>
+
+        <div className="p-5 flex flex-col gap-3">
+          {chapter.steps.length === 0 ? (
+            <div className="flex flex-col items-center justify-center py-16 text-center">
+              <div className="w-12 h-12 rounded-2xl bg-secondary flex items-center justify-center mb-3">
+                <HelpCircle className="w-6 h-6 text-muted-foreground/40" />
+              </div>
+              <p className="text-[13px] font-semibold text-foreground mb-1">No steps yet</p>
+              <p className="text-[12px] text-muted-foreground mb-4">Add your first step to this chapter.</p>
+              <button type="button" onClick={() => setAddOpen(true)}
+                className="flex items-center gap-1.5 px-4 py-2 bg-foreground text-background rounded-xl text-[12px] font-semibold hover:opacity-80 transition-all">
+                <PlusCircle className="w-3.5 h-3.5" /> Add First Step
+              </button>
+            </div>
+          ) : (
+            chapter.steps.map((step, idx) => (
+              <StepRow key={step.id} step={step} index={idx}
+                onOpen={() => setActiveStepId(step.id)}
+                onDelete={() => handleStepDelete(step.id)} />
+            ))
+          )}
+        </div>
+
+        <AddStepModal open={addOpen} onClose={() => setAddOpen(false)} onCreate={handleStepCreate} />
       </div>
 
-      <AddStepModal open={addOpen} onClose={() => setAddOpen(false)} onCreate={handleStepCreate} />
+      {/* ── Flashcard generator — chapter-level AI study cards ──────────────── */}
+      <FlashcardGeneratorPanel
+        chapterTitle={chapter.title}
+        steps={chapter.steps}
+        initialCards={chapter.flashCards}
+        onCardsGenerated={(cards) =>
+          onChapterChange?.({ ...chapter, flashCards: cards })
+        }
+      />
     </div>
   )
 }

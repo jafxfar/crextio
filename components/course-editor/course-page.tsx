@@ -166,6 +166,7 @@ export function CoursePage({ courseId, initialTitle }: CoursePageProps) {
   const [modules, setModules] = useState<EditorModule[]>([])
   const [selection, setSelection] = useState<Selection | null>(null)
   const [moduleModalOpen, setModuleModalOpen] = useState(false)
+  const [quickChapterModuleId, setQuickChapterModuleId] = useState<number | null>(null)
 
   function handleModuleCreate(m: EditorModule) {
     setModules((prev) => [...prev, m])
@@ -198,6 +199,16 @@ export function CoursePage({ courseId, initialTitle }: CoursePageProps) {
                 c.id === chapterId ? { ...c, steps } : c,
               ),
             }
+          : m,
+      ),
+    )
+  }
+
+  function handleChapterChange(moduleId: number, updated: EditorChapter) {
+    setModules((prev) =>
+      prev.map((m) =>
+        m.id === moduleId
+          ? { ...m, chapters: m.chapters.map((c) => (c.id === updated.id ? updated : c)) }
           : m,
       ),
     )
@@ -324,6 +335,9 @@ export function CoursePage({ courseId, initialTitle }: CoursePageProps) {
               onChange={(steps: EditorChapter['steps']) =>
                 handleStepsChange(selectedModule.id, selectedChapter.id, steps)
               }
+              onChapterChange={(updated) =>
+                handleChapterChange(selectedModule.id, updated)
+              }
             />
           ) : (
             /* No chapter selected */
@@ -349,6 +363,24 @@ export function CoursePage({ courseId, initialTitle }: CoursePageProps) {
                   Add First Module
                 </button>
               )}
+              {modules.length > 0 && (
+                <div className="mt-5 flex flex-col items-center gap-2">
+                  <p className="text-[11px] text-muted-foreground font-medium">Or create a chapter in a module:</p>
+                  <div className="flex flex-wrap gap-2 justify-center">
+                    {modules.map((m) => (
+                      <button
+                        key={m.id}
+                        type="button"
+                        onClick={() => setQuickChapterModuleId(m.id)}
+                        className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-border bg-secondary hover:bg-accent hover:border-primary/40 text-[12px] font-medium text-foreground transition-all"
+                      >
+                        <PlusCircle className="w-3.5 h-3.5 text-[#ddff00]" />
+                        {m.title}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           )}
         </main>
@@ -361,6 +393,25 @@ export function CoursePage({ courseId, initialTitle }: CoursePageProps) {
         onClose={() => setModuleModalOpen(false)}
         onCreate={handleModuleCreate}
       />
+
+      {/* Quick chapter creation from empty-state */}
+      {quickChapterModuleId !== null && (() => {
+        const targetModule = modules.find((m) => m.id === quickChapterModuleId)
+        if (!targetModule) return null
+        return (
+          <CreateChapterModal
+            open
+            moduleTitle={targetModule.title}
+            position={targetModule.chapters.length + 1}
+            onClose={() => setQuickChapterModuleId(null)}
+            onCreate={(chapter) => {
+              handleChapterCreate(quickChapterModuleId, chapter)
+              setSelection({ moduleId: quickChapterModuleId, chapterId: chapter.id })
+              setQuickChapterModuleId(null)
+            }}
+          />
+        )
+      })()}
     </div>
   )
 }
