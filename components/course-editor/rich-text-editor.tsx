@@ -73,7 +73,7 @@ function ToolbarBtn({
       className={cn(
         'w-7 h-7 flex items-center justify-center rounded-lg text-[12px] transition-all shrink-0',
         active
-          ? 'bg-foreground text-background'
+          ? 'bg-nav-pill text-white'
           : 'text-muted-foreground hover:text-foreground hover:bg-accent',
         disabled && 'opacity-30 pointer-events-none',
       )}

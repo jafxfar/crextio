@@ -26,28 +26,28 @@ export function EditorHeader({ step, onBack, accentIcon: Icon, accentClass, onSa
 
   return (
     <div className="bg-card border border-border rounded-2xl shadow-sm overflow-hidden">
-      <div className="flex items-center gap-3 px-5 py-3.5 bg-foreground">
+      <div className="flex items-center gap-3 px-5 py-3.5 bg-nav-pill">
         <button
           type="button"
           onClick={onBack}
-          className="flex items-center gap-1.5 text-background/60 hover:text-background text-[12px] font-medium transition-colors shrink-0"
+          className="flex items-center gap-1.5 text-white/60 hover:text-white text-[12px] font-medium transition-colors shrink-0"
         >
           <ArrowLeft className="w-3.5 h-3.5" />
           Steps
         </button>
 
-        <span className="text-background/30">/</span>
+        <span className="text-white/30">/</span>
 
         <div className={cn('w-5 h-5 rounded-md flex items-center justify-center shrink-0', accentClass)}>
           <Icon className="w-3 h-3" />
         </div>
 
-        <span className="text-[13px] font-bold text-background truncate flex-1">
+        <span className="text-[13px] font-bold text-white truncate flex-1">
           {step.title}
         </span>
 
         {step.points > 0 && (
-          <span className="text-[11px] font-semibold text-background/50 bg-background/10 px-2.5 py-1 rounded-lg shrink-0">
+          <span className="text-[11px] font-semibold text-white/50 bg-white/10 px-2.5 py-1 rounded-lg shrink-0">
             {step.points} pts
           </span>
         )}
@@ -62,7 +62,7 @@ export function EditorHeader({ step, onBack, accentIcon: Icon, accentClass, onSa
             'flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-[12px] font-semibold transition-all shrink-0 select-none',
             isSaved
               ? 'bg-green-500/20 text-green-400'
-              : 'bg-background/15 hover:bg-background/25 text-background disabled:opacity-60',
+              : 'bg-white/15 hover:bg-white/25 text-white disabled:opacity-60',
           )}
         >
           {isSaving ? (

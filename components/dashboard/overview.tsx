@@ -9,8 +9,9 @@ import RecentOrders from "@/components/dashboard/RecentOrders";
 import { LeaderboardList } from './LeaderboardList';
 import MonthlyTarget from "@/components/dashboard/MonthlyTarget";
 import MonthlySalesChart from "@/components/dashboard/MonthlySalesChart";
-import { EcommerceMetrics } from "@/components/dashboard/EcommerceMetrics";
+import { TrendingUp } from 'lucide-react'
 
+import { ComplianceTrendChart } from '@/components/compliance/ComplianceTrendChart'
 
 function StatPills() {
   const stats = [
@@ -58,7 +59,17 @@ export function DashboardOverview() {
       <StatPills />
       <div className="grid grid-cols-12 gap-4 md:gap-6 p-4">
         <div className="col-span-12 space-y-6 xl:col-span-7">
-          <EcommerceMetrics />
+          <SectionCard
+            title="Compliance Rate Trend"
+            subtitle="6-month rolling average"
+            action={
+              <span className="inline-flex items-center gap-1 text-[11px] bg-emerald-50 text-emerald-700 px-2 py-1 rounded-full font-medium border border-emerald-200">
+                <TrendingUp className="w-3 h-3" /> +7% since Aug
+              </span>
+            }
+          >
+            <ComplianceTrendChart />
+          </SectionCard>
 
           <MonthlySalesChart />
         </div>

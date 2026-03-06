@@ -135,7 +135,7 @@ function AddStepModal({ open, onClose, onCreate }: {
               {STEP_TYPES.map(({ type: t, label, icon: Icon, desc }) => (
                 <button key={t} type="button" onClick={() => setType(t)}
                   className={cn('flex flex-col gap-1 p-3 rounded-xl border-2 text-left transition-all',
-                    type === t ? 'border-foreground bg-foreground/5' : 'border-border hover:border-foreground/30 hover:bg-accent/40')}>
+                    type === t ? 'border-nav-pill bg-secondary' : 'border-border hover:border-foreground/30 hover:bg-accent/40')}>
                   <div className={cn('w-7 h-7 rounded-lg flex items-center justify-center mb-0.5', getMeta(t).color)}>
                     <Icon className="w-3.5 h-3.5" />
                   </div>
@@ -150,17 +150,12 @@ function AddStepModal({ open, onClose, onCreate }: {
                 placeholder="Enter step title…"
                 className="w-full px-3 py-2.5 rounded-xl bg-background border border-border text-[13px] text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-foreground/20" />
             </div>
-            <div className="flex flex-col gap-1.5">
-              <label className="text-[12px] font-semibold text-foreground">Points</label>
-              <input type="number" min={0} value={points} onChange={(e) => setPoints(Number(e.target.value))}
-                className="w-full px-3 py-2.5 rounded-xl bg-background border border-border text-[13px] text-foreground focus:outline-none focus:ring-2 focus:ring-foreground/20" />
-            </div>
           </div>
           <div className="flex items-center justify-end gap-2 px-6 py-4 border-t border-border bg-secondary/30">
             <button type="button" onClick={onClose}
               className="px-4 py-2 rounded-xl text-[13px] font-medium text-muted-foreground hover:text-foreground hover:bg-accent transition-colors">Cancel</button>
             <button type="submit" disabled={!title.trim()}
-              className="px-5 py-2 rounded-xl bg-foreground text-background text-[13px] font-semibold hover:opacity-80 disabled:opacity-40 transition-all">Add Step</button>
+              className="px-5 py-2 rounded-xl bg-nav-pill text-white text-[13px] font-semibold hover:opacity-90 disabled:opacity-40 transition-all shadow-sm">Add Step</button>
           </div>
         </form>
       </div>
@@ -185,18 +180,18 @@ function EditorHeader({ step, onBack, accentIcon, accentClass, onSave }: {
 
   return (
     <div className="bg-card border border-border rounded-2xl shadow-sm overflow-hidden">
-      <div className="flex items-center gap-3 px-5 py-3.5 bg-foreground">
+      <div className="flex items-center gap-3 px-5 py-3.5 bg-nav-pill">
         <button type="button" onClick={onBack}
-          className="flex items-center gap-1.5 text-background/60 hover:text-background text-[12px] font-medium transition-colors shrink-0">
+          className="flex items-center gap-1.5 text-white/60 hover:text-white text-[12px] font-medium transition-colors shrink-0">
           <ArrowLeft className="w-3.5 h-3.5" /> Steps
         </button>
-        <span className="text-background/30">/</span>
+        <span className="text-white/30">/</span>
         <div className={cn('w-5 h-5 rounded-md flex items-center justify-center shrink-0', accentClass)}>
           <Icon className="w-3 h-3" />
         </div>
-        <span className="text-[13px] font-bold text-background truncate flex-1">{step.title}</span>
+        <span className="text-[13px] font-bold text-white truncate flex-1">{step.title}</span>
         {step.points > 0 && (
-          <span className="text-[11px] font-semibold text-background/50 bg-background/10 px-2.5 py-1 rounded-lg shrink-0">
+          <span className="text-[11px] font-semibold text-white/50 bg-white/10 px-2.5 py-1 rounded-lg shrink-0">
             {step.points} pts
           </span>
         )}
@@ -211,7 +206,7 @@ function EditorHeader({ step, onBack, accentIcon, accentClass, onSave }: {
             'flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-[12px] font-semibold transition-all shrink-0 select-none',
             isSaved
               ? 'bg-green-500/20 text-green-400'
-              : 'bg-background/15 hover:bg-background/25 text-background disabled:opacity-60',
+              : 'bg-white/15 hover:bg-white/25 text-white disabled:opacity-60',
           )}
         >
           {isSaving ? (
@@ -455,7 +450,7 @@ function VideoStepEditor({ step, onBack, onChange }: {
               type="button"
               onClick={handleApply}
               disabled={!inputValue.trim() || inputValue.trim() === committed}
-              className="px-4 py-2.5 rounded-xl bg-foreground text-background text-[12px] font-semibold hover:opacity-80 disabled:opacity-30 transition-all shrink-0"
+              className="px-4 py-2.5 rounded-xl bg-nav-pill text-white text-[12px] font-semibold hover:opacity-90 disabled:opacity-30 transition-all shrink-0"
             >
               Apply
             </button>
@@ -613,7 +608,7 @@ function FilePreviewCard({ url, fileName, fileSize, fileMimeType }: {
             Open
           </a>
           <a href={url} download={fileName}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-foreground text-background text-[11px] font-semibold hover:opacity-80 transition-opacity">
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-nav-pill text-white text-[11px] font-semibold hover:opacity-90 transition-opacity">
             <Download className="w-3.5 h-3.5" />
             Download
           </a>
@@ -682,7 +677,7 @@ function FileStepEditor({ step, onBack, onChange }: {
                 type="button"
                 onClick={handleApply}
                 disabled={!urlInput.trim() || !isDirty}
-                className="px-4 py-2.5 rounded-xl bg-foreground text-background text-[12px] font-semibold hover:opacity-80 disabled:opacity-30 transition-all shrink-0"
+                className="px-4 py-2.5 rounded-xl bg-nav-pill text-white text-[12px] font-semibold hover:opacity-90 disabled:opacity-30 transition-all shrink-0"
               >
                 Apply
               </button>
@@ -828,15 +823,15 @@ export function StepsPanel({ chapter, moduleTitle, moduleIndex, onChange, onChap
   return (
     <div className="flex flex-col gap-4">
       <div className="bg-card border border-border rounded-2xl shadow-sm overflow-hidden">
-        <div className="flex items-center justify-between px-6 py-4 border-b border-border bg-foreground">
+        <div className="flex items-center justify-between px-6 py-4 border-b border-border bg-nav-pill">
           <div className="flex flex-col gap-0.5">
-            <span className="text-[10px] font-semibold text-background/50 uppercase tracking-wider">
+            <span className="text-[10px] font-semibold text-white/50 uppercase tracking-wider">
               {moduleIndex}. {moduleTitle}
             </span>
-            <h2 className="text-[15px] font-bold text-background leading-tight">{chapter.title}</h2>
+            <h2 className="text-[15px] font-bold text-white leading-tight">{chapter.title}</h2>
           </div>
           <button type="button" onClick={() => setAddOpen(true)}
-            className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-background/15 hover:bg-background/25 text-background text-[12px] font-semibold transition-all">
+            className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-white/15 hover:bg-white/25 text-white text-[12px] font-semibold transition-all">
             <PlusCircle className="w-3.5 h-3.5" /> Add Step
           </button>
         </div>
@@ -850,7 +845,7 @@ export function StepsPanel({ chapter, moduleTitle, moduleIndex, onChange, onChap
               <p className="text-[13px] font-semibold text-foreground mb-1">No steps yet</p>
               <p className="text-[12px] text-muted-foreground mb-4">Add your first step to this chapter.</p>
               <button type="button" onClick={() => setAddOpen(true)}
-                className="flex items-center gap-1.5 px-4 py-2 bg-foreground text-background rounded-xl text-[12px] font-semibold hover:opacity-80 transition-all">
+                className="flex items-center gap-1.5 px-4 py-2 bg-nav-pill text-white rounded-xl text-[12px] font-semibold hover:opacity-90 transition-all shadow-sm">
                 <PlusCircle className="w-3.5 h-3.5" /> Add First Step
               </button>
             </div>

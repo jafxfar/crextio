@@ -215,8 +215,8 @@ export function AudioGeneratorPanel({
     <div className="border border-border rounded-2xl overflow-hidden bg-card shadow-sm">
 
       {/* Header */}
-      <div className="flex items-center gap-3 px-5 py-3.5 bg-foreground">
-        <div className="shrink-0 w-7 h-7 rounded-lg bg-white/10 flex items-center justify-center">
+      <div className="flex items-center gap-3 px-5 py-3.5 bg-violet-500">
+        <div className="shrink-0 w-7 h-7 rounded-lg bg-white/15 flex items-center justify-center">
           <Volume2 className="w-3.5 h-3.5 text-white" />
         </div>
         <div className="flex-1 min-w-0">
@@ -267,7 +267,7 @@ export function AudioGeneratorPanel({
           <button
             type="button"
             onClick={handleGenerate}
-            className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-foreground text-background text-[13px] font-bold hover:opacity-80 transition-all"
+            className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-violet-500 text-white text-[13px] font-bold hover:opacity-90 transition-all shadow-sm shadow-violet-500/25"
           >
             <Sparkles className="w-4 h-4" />
             Generate Audio Narration
@@ -293,7 +293,7 @@ export function AudioGeneratorPanel({
                     key={i}
                     className={cn(
                       'h-1 rounded-full flex-1 transition-all duration-500',
-                      i <= loadingStep ? 'bg-foreground' : 'bg-foreground/20',
+                      i <= loadingStep ? 'bg-violet-500' : 'bg-violet-500/20',
                     )}
                   />
                 ))}
@@ -325,7 +325,7 @@ export function AudioGeneratorPanel({
             preload="auto"
           />
 
-          <div className="mx-5 mb-5 rounded-xl bg-foreground overflow-hidden">
+          <div className="mx-5 mb-5 rounded-xl bg-violet-500 overflow-hidden">
             {/* Decorative waveform */}
             <div className="flex items-end gap-0.5 px-5 pt-4 pb-2 h-14">
               {Array.from({ length: 48 }).map((_, i) => (

@@ -183,7 +183,7 @@ export function VideoStepEditor({ step, onBack, onChange }: VideoStepEditorProps
               type="button"
               onClick={handleApply}
               disabled={!inputValue.trim() || inputValue.trim() === committed}
-              className="px-4 py-2.5 rounded-xl bg-foreground text-background text-[12px] font-semibold hover:opacity-80 disabled:opacity-30 transition-all shrink-0"
+              className="px-4 py-2.5 rounded-xl bg-nav-pill text-white text-[12px] font-semibold hover:opacity-90 disabled:opacity-30 transition-all shrink-0"
             >
               Apply
             </button>

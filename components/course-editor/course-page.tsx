@@ -66,8 +66,8 @@ function SidebarModule({
             ? <ChevronDown className="w-3 h-3 text-muted-foreground shrink-0" />
             : <ChevronRight className="w-3 h-3 text-muted-foreground shrink-0" />
           }
-          <div className="w-5 h-5 rounded-md bg-foreground flex items-center justify-center shrink-0">
-            <Layers className="w-3 h-3 text-background" />
+          <div className="w-5 h-5 rounded-md bg-nav-pill flex items-center justify-center shrink-0">
+            <Layers className="w-3 h-3 text-white" />
           </div>
           <span className="text-[12px] font-bold text-foreground truncate flex-1">
             {moduleIndex}.&nbsp;{module.title}
@@ -109,13 +109,13 @@ function SidebarModule({
                 className={cn(
                   'flex items-center gap-2 w-full px-2.5 py-1.5 rounded-xl text-left transition-all text-[12px]',
                   isActive
-                    ? 'bg-foreground text-background font-semibold'
+                    ? 'bg-nav-pill text-white font-semibold'
                     : 'text-muted-foreground hover:text-foreground hover:bg-accent/60 font-medium',
                 )}
               >
                 <span className={cn(
                   'shrink-0 tabular-nums text-[10px] w-7',
-                  isActive ? 'text-background/60' : 'text-muted-foreground/60',
+                  isActive ? 'text-white/60' : 'text-muted-foreground/60',
                 )}>
                   {moduleIndex}.{idx + 1}
                 </span>
@@ -123,7 +123,7 @@ function SidebarModule({
                 {chapter.steps.length > 0 && (
                   <span className={cn(
                     'text-[10px] shrink-0',
-                    isActive ? 'text-background/50' : 'text-muted-foreground/50',
+                    isActive ? 'text-white/50' : 'text-muted-foreground/50',
                   )}>
                     {chapter.steps.length}
                   </span>
@@ -262,7 +262,7 @@ export function CoursePage({ courseId, initialTitle }: CoursePageProps) {
               <button
                 type="button"
                 onClick={() => setModuleModalOpen(true)}
-                className="flex items-center gap-1 px-2 py-1 rounded-lg bg-foreground text-background text-[10px] font-semibold hover:opacity-80 transition-opacity"
+                className="flex items-center gap-1 px-2 py-1 rounded-lg bg-nav-pill text-white text-[10px] font-semibold hover:opacity-90 transition-opacity"
               >
                 <PlusCircle className="w-3 h-3" />
                 Module

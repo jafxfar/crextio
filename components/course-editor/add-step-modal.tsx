@@ -123,7 +123,7 @@ export function AddStepModal({ open, onClose, onCreate }: AddStepModalProps) {
                   className={cn(
                     'flex flex-col gap-1 p-3 rounded-xl border-2 text-left transition-all',
                     type === t
-                      ? 'border-foreground bg-foreground/5'
+                      ? 'border-nav-pill bg-secondary'
                       : 'border-border hover:border-foreground/30 hover:bg-accent/40',
                   )}
                 >
@@ -201,7 +201,7 @@ export function AddStepModal({ open, onClose, onCreate }: AddStepModalProps) {
             <button
               type="submit"
               disabled={!title.trim()}
-              className="px-5 py-2 rounded-xl bg-foreground text-background text-[13px] font-semibold hover:opacity-80 disabled:opacity-40 transition-all"
+              className="px-5 py-2 rounded-xl bg-nav-pill text-white text-[13px] font-semibold hover:opacity-90 disabled:opacity-40 transition-all shadow-sm"
             >
               Add Step
             </button>
