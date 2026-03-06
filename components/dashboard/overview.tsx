@@ -2,15 +2,15 @@
 
 import { Trophy } from 'lucide-react'
 import { cn } from '@/lib/utils'
-import { globalComplianceRate } from '@/lib/data'
 
-import { SectionCard } from '@/components/ui/metric-card'
-import RecentOrders from "@/components/dashboard/RecentOrders";
+import { TrendingUp } from 'lucide-react'
 import { LeaderboardList } from './LeaderboardList';
+import { departmentStats, globalComplianceRate } from '@/lib/data'
+import { SectionCard } from '@/components/ui/metric-card'
+
 import MonthlyTarget from "@/components/dashboard/MonthlyTarget";
 import MonthlySalesChart from "@/components/dashboard/MonthlySalesChart";
-import { TrendingUp } from 'lucide-react'
-
+import { DeptComplianceRow } from '@/components/compliance/DeptComplianceRow'
 import { ComplianceTrendChart } from '@/components/compliance/ComplianceTrendChart'
 
 function StatPills() {
@@ -77,11 +77,15 @@ export function DashboardOverview() {
         <div className="col-span-12 xl:col-span-5">
           <MonthlyTarget />
         </div>
+        <div className="col-span-12 xl:col-span-6">
 
-        <div className="col-span-12 xl:col-span-7">
-          <RecentOrders />
+          <SectionCard title="Compliance by Department" subtitle="Current period" noPadding>
+            {departmentStats.map(stat => (
+              <DeptComplianceRow key={stat.department.id} stat={stat} />
+            ))}
+          </SectionCard>
         </div>
-        <div className="col-span-12 xl:col-span-5">
+        <div className="col-span-12 xl:col-span-6">
           <SectionCard
             title="XP Leaderboard"
             subtitle="Top performers this quarter"
@@ -95,6 +99,6 @@ export function DashboardOverview() {
           </SectionCard>
         </div>
       </div>
-    </div>
+    </div >
   )
 }

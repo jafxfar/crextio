@@ -140,10 +140,10 @@ function DepartmentCard({
   return (
     <div className="group relative bg-white rounded-2xl border border-border p-5 hover:shadow-[0_4px_16px_rgba(0,0,0,0.08)] transition-all overflow-hidden">
       {/* Color accent bar */}
-      <div
+      {/* <div
         className="absolute top-0 left-0 right-0 h-1 rounded-t-2xl"
         style={{ backgroundColor: department.color }}
-      />
+      /> */}
 
       <div className="flex items-start justify-between mt-1">
         <div className="flex items-center gap-3">
@@ -261,7 +261,7 @@ export function DepartmentsPanel() {
             <p className="text-xs mt-1">Add your first department to get started</p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 bg-none">
             {departments.map(dept => (
               <DepartmentCard
                 key={dept.id}
