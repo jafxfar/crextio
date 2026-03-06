@@ -3,7 +3,7 @@ import { CertificationsPage } from '@/components/certification/certifications'
 
 export default function Page() {
   return (
-    <DashboardShell title="Certifications" subtitle="Certificate tracking and compliance status">
+    <DashboardShell title="Соответствие" subtitle="Отслеживание сертификатов и статус соответствия">
       <CertificationsPage />
     </DashboardShell>
   )

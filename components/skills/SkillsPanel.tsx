@@ -7,7 +7,7 @@ import { cn } from '@/lib/utils'
 import { skills as initialSkills, Skill } from '@/lib/data'
 import { SkillCategoryBadge } from './SkillCategoryBadge'
 
-const CATEGORIES = ['Safety', 'Quality', 'Operations', 'Equipment', 'Analytics', 'Soft Skills']
+const CATEGORIES = ['Безопасность', 'Качество', 'Операции', 'Оборудование', 'Аналитика', 'Гибкие навыки']
 
 const ICONS = ['⚙️', '⚡', '🔥', '✅', '📉', '📊', '🏗️', '🦺', '🚨', '📋', '🔬', '👥', '🛡️', '🔧', '📦', '💡']
 
@@ -31,7 +31,7 @@ function SkillFormModal({
       <div className="bg-white rounded-2xl shadow-2xl w-full max-w-sm mx-4 overflow-hidden">
         {/* Header */}
         <div className="flex items-center justify-between px-5 py-4 border-b border-border">
-          <h3 className="text-sm font-semibold text-foreground">{skill ? 'Edit Skill' : 'Add Skill'}</h3>
+          <h3 className="text-sm font-semibold text-foreground">{skill ? 'Редактировать навык' : 'Добавить навык'}</h3>
           <button onClick={onClose} className="text-muted-foreground hover:text-foreground transition-colors">
             <X className="w-4 h-4" />
           </button>
@@ -40,18 +40,18 @@ function SkillFormModal({
         <div className="p-5 space-y-4">
           {/* Name */}
           <div className="space-y-1.5">
-            <label className="text-xs font-medium text-foreground">Skill Name</label>
+            <label className="text-xs font-medium text-foreground">Название навыка</label>
             <input
               value={name}
               onChange={e => setName(e.target.value)}
-              placeholder="e.g. Machine Safety"
+              placeholder="например, Безопасность оборудования"
               className="w-full text-sm px-3 py-2 rounded-[10px] border border-border bg-secondary/50 focus:outline-none focus:ring-2 focus:ring-primary/30 placeholder:text-muted-foreground"
             />
           </div>
 
           {/* Icon picker */}
           <div className="space-y-1.5">
-            <label className="text-xs font-medium text-foreground">Icon</label>
+            <label className="text-xs font-medium text-foreground">Иконка</label>
             <div className="grid grid-cols-8 gap-1.5">
               {ICONS.map(em => (
                 <button
@@ -72,7 +72,7 @@ function SkillFormModal({
 
           {/* Category */}
           <div className="space-y-1.5">
-            <label className="text-xs font-medium text-foreground">Category</label>
+            <label className="text-xs font-medium text-foreground">Категория</label>
             <div className="flex flex-wrap gap-2">
               {CATEGORIES.map(cat => (
                 <button
@@ -98,7 +98,7 @@ function SkillFormModal({
             onClick={onClose}
             className="px-4 py-2 rounded-[10px] text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
           >
-            Cancel
+            Отмена
           </button>
           <button
             onClick={() => valid && onSave({ name: name.trim(), icon, category })}
@@ -111,7 +111,7 @@ function SkillFormModal({
             )}
           >
             <Check className="w-3.5 h-3.5" />
-            {skill ? 'Save Changes' : 'Add Skill'}
+            {skill ? 'Сохранить' : 'Добавить навык'}
           </button>
         </div>
       </div>
@@ -159,15 +159,15 @@ export function SkillsPanel() {
       )}
 
       <SectionCard
-        title="Skills Library"
-        subtitle={`${skills.length} skills · ${categories.length} categories`}
+        title="Библиотека навыков"
+        subtitle={`${skills.length} навыков · ${categories.length} категорий`}
         noPadding
         action={
           <button
             onClick={() => { setEditing(null); setModalOpen(true) }}
             className="flex items-center gap-1.5 px-3 py-1.5 bg-foreground text-background rounded-[10px] text-xs font-medium hover:bg-foreground/90 transition-colors"
           >
-            <Plus className="w-3.5 h-3.5" /> Add Skill
+            <Plus className="w-3.5 h-3.5" /> Добавить навык
           </button>
         }
       >
@@ -177,7 +177,7 @@ export function SkillsPanel() {
             <Search className="w-3.5 h-3.5 text-muted-foreground shrink-0" />
             <input
               type="text"
-              placeholder="Search skills..."
+              placeholder="Поиск навыков..."
               value={search}
               onChange={e => setSearch(e.target.value)}
               className="bg-transparent text-xs text-foreground placeholder:text-muted-foreground outline-none w-32"
@@ -194,7 +194,7 @@ export function SkillsPanel() {
                   : 'bg-secondary/50 text-muted-foreground border-border hover:border-foreground/30',
               )}
             >
-              All
+              Все
             </button>
             {categories.map(cat => (
               <button
@@ -218,8 +218,8 @@ export function SkillsPanel() {
           {filtered.length === 0 ? (
             <div className="col-span-full flex flex-col items-center justify-center py-12 text-muted-foreground">
               <span className="text-3xl mb-2">🔍</span>
-              <p className="text-sm font-medium">No skills found</p>
-              <p className="text-xs mt-1">Try adjusting your search or filters</p>
+              <p className="text-sm font-medium">Навыки не найдены</p>
+              <p className="text-xs mt-1">Попробуйте изменить поисковый запрос или фильтры</p>
             </div>
           ) : (
             filtered.map(skill => (
@@ -238,14 +238,14 @@ export function SkillsPanel() {
                   <button
                     onClick={() => setEditing(skill)}
                     className="w-7 h-7 rounded-[7px] flex items-center justify-center bg-secondary border border-border text-muted-foreground hover:text-foreground hover:bg-white transition-colors"
-                    aria-label={`Edit ${skill.name}`}
+                    aria-label={`Редактировать ${skill.name}`}
                   >
                     <Pencil className="w-3 h-3" />
                   </button>
                   <button
                     onClick={() => handleDelete(skill.id)}
                     className="w-7 h-7 rounded-[7px] flex items-center justify-center bg-secondary border border-border text-muted-foreground hover:text-red-600 hover:bg-red-50 hover:border-red-200 transition-colors"
-                    aria-label={`Delete ${skill.name}`}
+                    aria-label={`Удалить ${skill.name}`}
                   >
                     <Trash2 className="w-3 h-3" />
                   </button>

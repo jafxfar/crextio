@@ -39,17 +39,17 @@ interface FormState {
 }
 
 const STEPS: { label: string; icon: React.ReactNode }[] = [
-  { label: 'Basics',      icon: <BookOpen className="w-3.5 h-3.5" /> },
-  { label: 'Rules',       icon: <Target className="w-3.5 h-3.5" /> },
-  { label: 'Skills & XP', icon: <Zap className="w-3.5 h-3.5" /> },
+  { label: 'Основное',    icon: <BookOpen className="w-3.5 h-3.5" /> },
+  { label: 'Правила',     icon: <Target className="w-3.5 h-3.5" /> },
+  { label: 'Навыки и XP', icon: <Zap className="w-3.5 h-3.5" /> },
 ]
 
 const ATTEMPTS_OPTIONS = [
-  { label: 'Unlimited', value: 0 },
-  { label: '1 attempt', value: 1 },
-  { label: '2 attempts', value: 2 },
-  { label: '3 attempts', value: 3 },
-  { label: '5 attempts', value: 5 },
+  { label: 'Без ограничений', value: 0 },
+  { label: '1 попытка', value: 1 },
+  { label: '2 попытки', value: 2 },
+  { label: '3 попытки', value: 3 },
+  { label: '5 попыток', value: 5 },
 ]
 
 export function CreateCourseModal({ open, onClose }: CreateCourseModalProps) {
@@ -167,8 +167,8 @@ export function CreateCourseModal({ open, onClose }: CreateCourseModalProps) {
               <BookOpen className="w-4.5 h-4.5 text-foreground" />
             </div>
             <div>
-              <h2 className="text-[15px] font-bold text-foreground leading-tight">New Course</h2>
-              <p className="text-[11px] text-muted-foreground mt-0.5">Step {step} of {STEPS.length} — {STEPS[step - 1].label}</p>
+              <h2 className="text-[15px] font-bold text-foreground leading-tight">Новый курс</h2>
+              <p className="text-[11px] text-muted-foreground mt-0.5">Шаг {step} из {STEPS.length} — {STEPS[step - 1].label}</p>
             </div>
           </div>
           <button
@@ -218,7 +218,7 @@ export function CreateCourseModal({ open, onClose }: CreateCourseModalProps) {
               {/* Banner upload */}
               <div>
                 <label className="block text-[12px] font-semibold text-foreground mb-1.5">
-                  Course Banner
+                  Баннер курса
                 </label>
                 <div
                   className={cn(
@@ -235,7 +235,7 @@ export function CreateCourseModal({ open, onClose }: CreateCourseModalProps) {
                       <img src={form.bannerUrl} alt="Banner preview" className="absolute inset-0 w-full h-full object-cover" />
                       <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
                         <span className="text-white text-xs font-medium flex items-center gap-1">
-                          <Upload className="w-3.5 h-3.5" /> Change image
+                          <Upload className="w-3.5 h-3.5" /> Изменить изображение
                         </span>
                       </div>
                     </>
@@ -245,7 +245,7 @@ export function CreateCourseModal({ open, onClose }: CreateCourseModalProps) {
                         <ImageIcon className="w-5 h-5 text-muted-foreground" />
                       </div>
                       <p className="text-[12px] text-muted-foreground">
-                        Click to upload banner <span className="text-foreground/40 font-medium">· PNG, JPG, WEBP</span>
+                        Нажмите для загрузки баннера <span className="text-foreground/40 font-medium">· PNG, JPG, WEBP</span>
                       </p>
                     </>
                   )}
@@ -256,12 +256,12 @@ export function CreateCourseModal({ open, onClose }: CreateCourseModalProps) {
               {/* Title */}
               <div>
                 <label className="block text-[12px] font-semibold text-foreground mb-1.5">
-                  Course Title <span className="text-red-500">*</span>
+                  Название курса <span className="text-red-500">*</span>
                 </label>
                 <input
                   autoFocus
                   type="text"
-                  placeholder="e.g. Machine Safety & Lockout/Tagout"
+                  placeholder="например, Безопасность оборудования"
                   value={form.title}
                   onChange={e => setForm(f => ({ ...f, title: e.target.value }))}
                   className="w-full bg-secondary border border-border rounded-xl px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary/50 transition-all"
@@ -270,10 +270,10 @@ export function CreateCourseModal({ open, onClose }: CreateCourseModalProps) {
 
               {/* Description */}
               <div>
-                <label className="block text-[12px] font-semibold text-foreground mb-1.5">Description</label>
+                <label className="block text-[12px] font-semibold text-foreground mb-1.5">Описание</label>
                 <textarea
                   rows={3}
-                  placeholder="Brief overview of what this course covers…"
+                  placeholder="Краткое описание содержания курса…"
                   value={form.description}
                   onChange={e => setForm(f => ({ ...f, description: e.target.value }))}
                   className="w-full bg-secondary border border-border rounded-xl px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary/50 transition-all resize-none"
@@ -282,7 +282,7 @@ export function CreateCourseModal({ open, onClose }: CreateCourseModalProps) {
 
               {/* Departments */}
               <div>
-                <label className="block text-[12px] font-semibold text-foreground mb-2">Departments</label>
+                <label className="block text-[12px] font-semibold text-foreground mb-2">Отделы</label>
                 <div className="flex flex-wrap gap-2">
                   {departments.map(d => {
                     const selected = form.departmentIds.includes(d.id)
@@ -307,7 +307,7 @@ export function CreateCourseModal({ open, onClose }: CreateCourseModalProps) {
 
               {/* Status */}
               <div>
-                <label className="block text-[12px] font-semibold text-foreground mb-2">Initial Status</label>
+                <label className="block text-[12px] font-semibold text-foreground mb-2">Начальный статус</label>
                 <div className="flex gap-2">
                   {(['draft', 'active'] as const).map(s => (
                     <button
@@ -336,9 +336,9 @@ export function CreateCourseModal({ open, onClose }: CreateCourseModalProps) {
             <>
               {/* Max attempts */}
               <div>
-                <label className="block text-[12px] font-semibold text-foreground mb-1.5">Maximum Attempts</label>
+                <label className="block text-[12px] font-semibold text-foreground mb-1.5">Максимум попыток</label>
                 <p className="text-[11px] text-muted-foreground mb-2.5">
-                  How many times a learner can retake the course before being locked out.
+                  Сколько раз обучающийся может пересдать курс до блокировки.
                 </p>
                 <div className="flex flex-wrap gap-2">
                   {ATTEMPTS_OPTIONS.map(opt => (
@@ -362,7 +362,7 @@ export function CreateCourseModal({ open, onClose }: CreateCourseModalProps) {
               {/* Passing percentage */}
               <div>
                 <div className="flex items-center justify-between mb-1.5">
-                  <label className="block text-[12px] font-semibold text-foreground">Passing Threshold</label>
+                  <label className="block text-[12px] font-semibold text-foreground">Порог прохождения</label>
                   <div className="flex items-center gap-1">
                     <input
                       type="number"
@@ -376,7 +376,7 @@ export function CreateCourseModal({ open, onClose }: CreateCourseModalProps) {
                   </div>
                 </div>
                 <p className="text-[11px] text-muted-foreground mb-3">
-                  Learner must score at or above this percentage to pass. E.g. 7/10 correct = 70%.
+                  Обучающийся должен набрать не менее этого процента для прохождения. Например, 7/10 правильных = 70%.
                 </p>
                 <input
                   type="range"
@@ -398,8 +398,8 @@ export function CreateCourseModal({ open, onClose }: CreateCourseModalProps) {
                       ? 'bg-red-50 border-red-200 text-red-700'
                       : 'bg-emerald-50 border-emerald-200 text-emerald-700',
                 )}>
-                  <span className="font-bold">Example: </span>
-                  10 questions → need at least <span className="font-bold">{Math.ceil(10 * form.passingPercentage / 100)}</span> correct to pass at {form.passingPercentage}%
+                  <span className="font-bold">Пример: </span>
+                  10 вопросов → нужно минимум <span className="font-bold">{Math.ceil(10 * form.passingPercentage / 100)}</span> правильных для прохождения при {form.passingPercentage}%
                 </div>
               </div>
 
@@ -407,10 +407,10 @@ export function CreateCourseModal({ open, onClose }: CreateCourseModalProps) {
               <div>
                 <label className="block text-[12px] font-semibold text-foreground mb-1.5">
                   <Trophy className="w-3.5 h-3.5 inline mr-1 mb-0.5" />
-                  Certificate Upon Completion
+                  Сертификат по завершении
                 </label>
                 <p className="text-[11px] text-muted-foreground mb-2.5">
-                  Choose a certificate from the system. Leave unselected for no certificate.
+                  Выберите сертификат из системы. Оставьте без выбора, если сертификат не нужен.
                 </p>
                 <div className="space-y-2">
                   <label className={cn(
@@ -419,8 +419,8 @@ export function CreateCourseModal({ open, onClose }: CreateCourseModalProps) {
                   )}>
                     <input type="radio" name="cert" value="" checked={form.certificateTemplateId === ''} onChange={() => setForm(f => ({ ...f, certificateTemplateId: '' }))} className="accent-primary" />
                     <div>
-                      <p className="text-[12px] font-semibold text-foreground">No certificate</p>
-                      <p className="text-[11px] text-muted-foreground">Course completion only</p>
+                      <p className="text-[12px] font-semibold text-foreground">Без сертификата</p>
+                      <p className="text-[11px] text-muted-foreground">Только завершение курса</p>
                     </div>
                   </label>
                   {certificateTemplates.map(ct => (
@@ -437,9 +437,9 @@ export function CreateCourseModal({ open, onClose }: CreateCourseModalProps) {
                         <p className="text-[11px] text-muted-foreground truncate">{ct.description}</p>
                       </div>
                       {ct.validityDays ? (
-                        <span className="text-[10px] font-medium text-amber-700 bg-amber-50 border border-amber-200 px-2 py-0.5 rounded-full shrink-0">{ct.validityDays}d validity</span>
+                        <span className="text-[10px] font-medium text-amber-700 bg-amber-50 border border-amber-200 px-2 py-0.5 rounded-full shrink-0">{ct.validityDays}д. действия</span>
                       ) : (
-                        <span className="text-[10px] font-medium text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-full shrink-0">Lifetime</span>
+                        <span className="text-[10px] font-medium text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-full shrink-0">Бессрочный</span>
                       )}
                     </label>
                   ))}
@@ -453,7 +453,7 @@ export function CreateCourseModal({ open, onClose }: CreateCourseModalProps) {
             <>
               <div>
                 <div className="flex items-center justify-between mb-1.5">
-                  <label className="block text-[12px] font-semibold text-foreground">Skills Earned on Completion</label>
+                  <label className="block text-[12px] font-semibold text-foreground">Навыки при завершении</label>
                   <button
                     type="button"
                     onClick={addSkill}
@@ -465,11 +465,11 @@ export function CreateCourseModal({ open, onClose }: CreateCourseModalProps) {
                         : 'bg-primary/10 text-primary border-primary/20 hover:bg-primary/20',
                     )}
                   >
-                    <Plus className="w-3 h-3" /> Add Skill
+                    <Plus className="w-3 h-3" /> Добавить навык
                   </button>
                 </div>
                 <p className="text-[11px] text-muted-foreground mb-4">
-                  Select which skills learners will gain XP in after completing this course.
+                  Выберите навыки, по которым обучающиеся получат XP после завершения курса.
                 </p>
 
                 {form.skillEntries.length === 0 ? (
@@ -478,7 +478,7 @@ export function CreateCourseModal({ open, onClose }: CreateCourseModalProps) {
                       <Zap className="w-5 h-5 text-muted-foreground" />
                     </div>
                     <p className="text-[12px] text-muted-foreground text-center max-w-50">
-                      No skills added yet. Click <span className="font-semibold text-foreground">Add Skill</span> to get started.
+                      Навыки не добавлены. Нажмите <span className="font-semibold text-foreground">Добавить навык</span> для начала.
                     </p>
                   </div>
                 ) : (
@@ -529,10 +529,10 @@ export function CreateCourseModal({ open, onClose }: CreateCourseModalProps) {
                   <div className="mt-4 rounded-xl bg-primary/5 border border-primary/15 px-4 py-3 flex items-center justify-between">
                     <div>
                       <p className="text-[12px] font-semibold text-foreground">
-                        {form.skillEntries.length} skill{form.skillEntries.length !== 1 ? 's' : ''} selected
+                        {form.skillEntries.length} навык{form.skillEntries.length === 1 ? '' : form.skillEntries.length < 5 ? 'а' : 'ов'} выбрано
                       </p>
                       <p className="text-[11px] text-muted-foreground mt-0.5">
-                        Learner will earn <span className="font-bold text-primary">{form.skillEntries.reduce((s, e) => s + e.xp, 0)} XP</span> total on completion
+                        Обучающийся получит <span className="font-bold text-primary">{form.skillEntries.reduce((s, e) => s + e.xp, 0)} XP</span> за завершение
                       </p>
                     </div>
                     <div className="flex gap-1">
@@ -556,7 +556,7 @@ export function CreateCourseModal({ open, onClose }: CreateCourseModalProps) {
               onClick={() => setStep(s => (s - 1) as Step)}
               className="flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-accent border border-border transition-colors"
             >
-              <ChevronLeft className="w-4 h-4" /> Back
+              <ChevronLeft className="w-4 h-4" /> Назад
             </button>
           ) : (
             <button
@@ -564,7 +564,7 @@ export function CreateCourseModal({ open, onClose }: CreateCourseModalProps) {
               onClick={handleClose}
               className="px-4 py-2 rounded-xl text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-accent border border-border transition-colors"
             >
-              Cancel
+              Отмена
             </button>
           )}
 
@@ -578,7 +578,7 @@ export function CreateCourseModal({ open, onClose }: CreateCourseModalProps) {
                 step === 1 && !step1Valid && 'opacity-50 cursor-not-allowed',
               )}
             >
-              Continue <ChevronRight className="w-4 h-4" />
+              Продолжить <ChevronRight className="w-4 h-4" />
             </button>
           ) : (
             <button
@@ -591,9 +591,9 @@ export function CreateCourseModal({ open, onClose }: CreateCourseModalProps) {
               )}
             >
               {loading ? (
-                <><Loader2 className="w-3.5 h-3.5 animate-spin" /> Creating…</>
+                <><Loader2 className="w-3.5 h-3.5 animate-spin" /> Создание…</>
               ) : (
-                <><Check className="w-4 h-4" /> Create Course</>
+                <><Check className="w-4 h-4" /> Создать курс</>
               )}
             </button>
           )}

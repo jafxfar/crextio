@@ -32,7 +32,7 @@ function DepartmentFormModal({
       <div className="bg-white rounded-2xl shadow-2xl w-full max-w-sm mx-4 overflow-hidden">
         <div className="flex items-center justify-between px-5 py-4 border-b border-border">
           <h3 className="text-sm font-semibold text-foreground">
-            {department ? 'Edit Department' : 'Add Department'}
+            {department ? 'Редактировать отдел' : 'Добавить отдел'}
           </h3>
           <button onClick={onClose} className="text-muted-foreground hover:text-foreground transition-colors">
             <X className="w-4 h-4" />
@@ -42,18 +42,18 @@ function DepartmentFormModal({
         <div className="p-5 space-y-4">
           {/* Name */}
           <div className="space-y-1.5">
-            <label className="text-xs font-medium text-foreground">Department Name</label>
+            <label className="text-xs font-medium text-foreground">Название отдела</label>
             <input
               value={name}
               onChange={e => setName(e.target.value)}
-              placeholder="e.g. Engineering"
+              placeholder="например, Разработка"
               className="w-full text-sm px-3 py-2 rounded-[10px] border border-border bg-secondary/50 focus:outline-none focus:ring-2 focus:ring-primary/30 placeholder:text-muted-foreground"
             />
           </div>
 
           {/* Headcount */}
           <div className="space-y-1.5">
-            <label className="text-xs font-medium text-foreground">Headcount</label>
+            <label className="text-xs font-medium text-foreground">Численность</label>
             <input
               type="number"
               min={0}
@@ -65,7 +65,7 @@ function DepartmentFormModal({
 
           {/* Color */}
           <div className="space-y-1.5">
-            <label className="text-xs font-medium text-foreground">Color</label>
+            <label className="text-xs font-medium text-foreground">Цвет</label>
             <div className="flex items-center gap-2 flex-wrap">
               {PRESET_COLORS.map(c => (
                 <button
@@ -96,14 +96,14 @@ function DepartmentFormModal({
               <div className="w-8 h-8 rounded-full flex items-center justify-center text-white text-xs font-bold" style={{ backgroundColor: color }}>
                 {name ? name.slice(0, 2).toUpperCase() : 'DE'}
               </div>
-              <span className="text-sm font-medium text-foreground">{name || 'Department Name'}</span>
+              <span className="text-sm font-medium text-foreground">{name || 'Название отдела'}</span>
             </div>
           </div>
         </div>
 
         <div className="flex items-center justify-end gap-2 px-5 py-4 border-t border-border bg-secondary/30">
           <button onClick={onClose} className="px-4 py-2 rounded-[10px] text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
-            Cancel
+            Отмена
           </button>
           <button
             onClick={() => valid && onSave({ name: name.trim(), headcount, color })}
@@ -116,7 +116,7 @@ function DepartmentFormModal({
             )}
           >
             <Check className="w-3.5 h-3.5" />
-            {department ? 'Save Changes' : 'Add Department'}
+            {department ? 'Сохранить' : 'Добавить отдел'}
           </button>
         </div>
       </div>
@@ -155,7 +155,7 @@ function DepartmentCard({
           </div>
           <div>
             <h3 className="text-sm font-semibold text-foreground leading-tight">{department.name}</h3>
-            <p className="text-xs text-muted-foreground mt-0.5">{department.headcount} headcount</p>
+            <p className="text-xs text-muted-foreground mt-0.5">{department.headcount} чел.</p>
           </div>
         </div>
 
@@ -164,14 +164,14 @@ function DepartmentCard({
           <button
             onClick={onEdit}
             className="w-7 h-7 rounded-[7px] flex items-center justify-center bg-secondary border border-border text-muted-foreground hover:text-foreground hover:bg-white transition-colors"
-            aria-label={`Edit ${department.name}`}
+            aria-label={`Редактировать ${department.name}`}
           >
             <Pencil className="w-3 h-3" />
           </button>
           <button
             onClick={onDelete}
             className="w-7 h-7 rounded-[7px] flex items-center justify-center bg-secondary border border-border text-muted-foreground hover:text-red-600 hover:bg-red-50 hover:border-red-200 transition-colors"
-            aria-label={`Delete ${department.name}`}
+            aria-label={`Удалить ${department.name}`}
           >
             <Trash2 className="w-3 h-3" />
           </button>
@@ -184,7 +184,7 @@ function DepartmentCard({
           <Users className="w-3.5 h-3.5 text-muted-foreground shrink-0" />
           <div>
             <p className="text-xs font-bold text-foreground">{memberCount}</p>
-            <p className="text-[10px] text-muted-foreground">Members</p>
+            <p className="text-[10px] text-muted-foreground">Участники</p>
           </div>
         </div>
         <div className="bg-secondary/40 rounded-[10px] p-2.5 flex items-center gap-2">
@@ -193,7 +193,7 @@ function DepartmentCard({
             <p className="text-xs font-bold text-foreground">
               {compliance !== null ? `${compliance}%` : '—'}
             </p>
-            <p className="text-[10px] text-muted-foreground">Compliance</p>
+            <p className="text-[10px] text-muted-foreground">Соответствие</p>
           </div>
         </div>
       </div>
@@ -243,22 +243,22 @@ export function DepartmentsPanel() {
       )}
 
       <SectionCard
-        title="Departments"
-        subtitle={`${departments.length} departments · ${departments.reduce((s, d) => s + d.headcount, 0)} total headcount`}
+        title="Отделы"
+        subtitle={`${departments.length} отделов · ${departments.reduce((s, d) => s + d.headcount, 0)} сотрудников`}
         action={
           <button
             onClick={() => { setEditing(null); setModalOpen(true) }}
             className="flex items-center gap-1.5 px-3 py-1.5 bg-foreground text-background rounded-[10px] text-xs font-medium hover:bg-foreground/90 transition-colors"
           >
-            <Plus className="w-3.5 h-3.5" /> Add Department
+            <Plus className="w-3.5 h-3.5" /> Добавить отдел
           </button>
         }
       >
         {departments.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-16 text-muted-foreground">
             <span className="text-3xl mb-2">🏢</span>
-            <p className="text-sm font-medium">No departments yet</p>
-            <p className="text-xs mt-1">Add your first department to get started</p>
+            <p className="text-sm font-medium">Пока нет отделов</p>
+            <p className="text-xs mt-1">Добавьте первый отдел, чтобы начать</p>
           </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 bg-none">

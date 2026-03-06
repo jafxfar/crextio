@@ -15,10 +15,10 @@ import { ComplianceTrendChart } from '@/components/compliance/ComplianceTrendCha
 
 function StatPills() {
   const stats = [
-    { label: 'Compliance', value: `${globalComplianceRate}%`, pill: true, dark: true },
-    { label: 'Hired', value: '51%', pill: true },
-    { label: 'Project time', value: '15%', pill: false },
-    { label: 'Output', value: '4%', pill: false },
+    { label: 'Соответствие', value: `${globalComplianceRate}%`, pill: true, dark: true },
+    { label: 'Нанято', value: '51%', pill: true },
+    { label: 'Время проекта', value: '15%', pill: false },
+    { label: 'Выработка', value: '4%', pill: false },
   ]
 
   return (
@@ -39,9 +39,9 @@ function StatPills() {
       {/* Big stat numbers (Crextio right side) */}
       <div className="ml-auto flex items-center gap-6">
         {[
-          { n: 427, label: 'Employees' },
-          { n: 26, label: 'Overdue' },
-          { n: 8, label: 'Courses' },
+          { n: 427, label: 'Сотрудники' },
+          { n: 26, label: 'Просрочено' },
+          { n: 8, label: 'Курсы' },
         ].map(({ n, label }) => (
           <div key={label} className="text-right">
             <p className="text-2xl font-bold text-foreground leading-none">{n}</p>
@@ -60,11 +60,11 @@ export function DashboardOverview() {
       <div className="grid grid-cols-12 gap-4 md:gap-6 p-4">
         <div className="col-span-12 space-y-6 xl:col-span-7">
           <SectionCard
-            title="Compliance Rate Trend"
-            subtitle="6-month rolling average"
+            title="Динамика соответствия"
+            subtitle="Скользящее среднее за 6 месяцев"
             action={
               <span className="inline-flex items-center gap-1 text-[11px] bg-emerald-50 text-emerald-700 px-2 py-1 rounded-full font-medium border border-emerald-200">
-                <TrendingUp className="w-3 h-3" /> +7% since Aug
+                <TrendingUp className="w-3 h-3" /> +7% с августа
               </span>
             }
           >
@@ -79,7 +79,7 @@ export function DashboardOverview() {
         </div>
         <div className="col-span-12 xl:col-span-6">
 
-          <SectionCard title="Compliance by Department" subtitle="Current period" noPadding>
+          <SectionCard title="Соответствие по отделам" subtitle="Текущий период" noPadding>
             {departmentStats.map(stat => (
               <DeptComplianceRow key={stat.department.id} stat={stat} />
             ))}
@@ -87,8 +87,8 @@ export function DashboardOverview() {
         </div>
         <div className="col-span-12 xl:col-span-6">
           <SectionCard
-            title="XP Leaderboard"
-            subtitle="Top performers this quarter"
+            title="Таблица лидеров XP"
+            subtitle="Лучшие сотрудники квартала"
             action={
               <span className="inline-flex items-center gap-1 text-[11px] bg-primary/20 text-primary px-2.5 py-1 rounded-full font-medium">
                 <Trophy className="w-3 h-3" /> Q1 2025

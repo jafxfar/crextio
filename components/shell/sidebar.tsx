@@ -12,13 +12,13 @@ import { cn } from '@/lib/utils'
 import { AvatarImage } from '@radix-ui/react-avatar'
 import LogoText from '@/public/logo_title.svg'
 const navItems = [
-  { href: '/', label: 'Dashboard' },
-  { href: '/users', label: 'Users' },
-  { href: '/courses', label: 'Courses' },
-  { href: '/departments', label: 'Departments' },
-  { href: '/skills', label: 'Skills' },
-  { href: '/certificates', label: 'Certificates' },
-  { href: '/certifications', label: 'Compliance' },
+  { href: '/', label: 'Дашборд' },
+  { href: '/users', label: 'Пользователи' },
+  { href: '/courses', label: 'Курсы' },
+  { href: '/departments', label: 'Отделы' },
+  { href: '/skills', label: 'Навыки' },
+  { href: '/certificates', label: 'Сертификаты' },
+  { href: '/certifications', label: 'Соответствие' },
 ]
 
 export function TopNav() {
@@ -69,7 +69,7 @@ export function TopNav() {
         {/* Settings with text */}
         <Link href="/settings" className="flex bg-white rounded-full px-6 py-3 items-center gap-2 text-muted-foreground hover:text-foreground transition-colors">
           <Settings className="w-4.5 h-4.5" />
-          <span className="text-[15px] font-medium">Setting</span>
+          <span className="text-[15px] font-medium">Настройки</span>
         </Link>
 
         {/* Notifications with yellow dot */}

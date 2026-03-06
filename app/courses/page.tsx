@@ -3,7 +3,7 @@ import { CoursesPage } from '@/components/course/courses'
 
 export default function Page() {
   return (
-    <DashboardShell title="Courses" subtitle="Manage training content and modules">
+    <DashboardShell title="Курсы" subtitle="Управление учебными материалами и модулями">
       <CoursesPage />
     </DashboardShell>
   )

@@ -20,9 +20,14 @@ function RoleChip({ role }: { role: 'admin' | 'manager' | 'employee' }) {
         manager: 'bg-blue-50 text-blue-700 border-blue-200',
         employee: 'bg-gray-100 text-gray-600 border-gray-200',
     }
+    const labels = {
+        admin: 'Администратор',
+        manager: 'Менеджер',
+        employee: 'Сотрудник',
+    }
     return (
         <span className={cn('inline-flex px-2 py-0.5 rounded-full text-[11px] font-medium border', map[role])}>
-            {role.charAt(0).toUpperCase() + role.slice(1)}
+            {labels[role]}
         </span>
     )
 }
@@ -58,8 +63,8 @@ export function UserTable(props: UserTableProps) {
     return (
 
         <SectionCard
-            title="All Users"
-            subtitle={`${users.length} active employees`}
+            title="Все пользователи"
+            subtitle={`${users.length} активных сотрудников`}
             noPadding
             action={
                 <div className="flex items-center gap-2">
@@ -67,7 +72,7 @@ export function UserTable(props: UserTableProps) {
                         <Search className="w-3.5 h-3.5 text-muted-foreground flex-shrink-0" />
                         <input
                             type="text"
-                            placeholder="Search..."
+                            placeholder="Поиск..."
                             value={search}
                             onChange={e => setSearch(e.target.value)}
                             className="bg-transparent text-xs text-foreground placeholder:text-muted-foreground outline-none w-32"
@@ -78,17 +83,17 @@ export function UserTable(props: UserTableProps) {
         >
             {/* Table header */}
             <div className="grid grid-cols-[2fr_1fr_1fr_1fr_1.5fr] gap-4 px-5 py-2.5 bg-secondary border-b border-border text-[11px] font-semibold text-muted-foreground uppercase tracking-wide">
-                <span>Employee</span>
+                <span>Сотрудник</span>
                 <button className="flex items-center gap-1 hover:text-foreground transition-colors" onClick={() => toggleSort('xp')}>
                     XP Score <SortIcon field="xp" />
                 </button>
                 <button className="flex items-center gap-1 hover:text-foreground transition-colors" onClick={() => toggleSort('completed')}>
-                    Courses <SortIcon field="completed" />
+                    Курсы <SortIcon field="completed" />
                 </button>
                 <button className="flex items-center gap-1 hover:text-foreground transition-colors" onClick={() => toggleSort('certs')}>
-                    Certs <SortIcon field="certs" />
+                    Серт. <SortIcon field="certs" />
                 </button>
-                <span>Progress</span>
+                <span>Прогресс</span>
             </div>
 
             <div className="divide-y divide-border">
@@ -132,13 +137,13 @@ export function UserTable(props: UserTableProps) {
                                 <p className="text-sm font-bold text-foreground flex items-center gap-1">
                                     <Zap className="w-3 h-3 text-amber-500" />{user.xp.toLocaleString()}
                                 </p>
-                                <p className="text-[11px] text-muted-foreground">Rank #{user.rank}</p>
+                                <p className="text-[11px] text-muted-foreground">Ранг #{user.rank}</p>
                             </div>
 
                             {/* Courses */}
                             <div>
                                 <p className="text-sm font-medium text-foreground">{user.completedCourses}/{user.totalCourses}</p>
-                                <p className="text-[11px] text-muted-foreground">{completionPct}% done</p>
+                                <p className="text-[11px] text-muted-foreground">{completionPct}% выполнено</p>
                             </div>
 
                             {/* Certifications */}
@@ -155,7 +160,7 @@ export function UserTable(props: UserTableProps) {
                                         style={{ width: `${completionPct}%` }}
                                     />
                                 </div>
-                                <p className="text-[10px] text-muted-foreground mt-1">{completionPct}% complete</p>
+                                <p className="text-[10px] text-muted-foreground mt-1">{completionPct}% завершено</p>
                             </div>
                         </div>
                     )

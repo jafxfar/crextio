@@ -14,9 +14,9 @@ export function DeptComplianceRow({ stat }: { stat: typeof departmentStats[0] })
             complianceRate >= 75 ? 'bg-primary' :
                 'bg-amber-500'
     const badge =
-        complianceRate >= 90 ? { label: 'Compliant', bg: 'bg-emerald-50 text-emerald-700 border-emerald-200' } :
-            complianceRate >= 75 ? { label: 'On Track', bg: 'bg-blue-50 text-blue-700 border-blue-200' } :
-                { label: 'At Risk', bg: 'bg-amber-50 text-amber-700 border-amber-200' }
+        complianceRate >= 90 ? { label: 'Соответствует', bg: 'bg-emerald-50 text-emerald-700 border-emerald-200' } :
+            complianceRate >= 75 ? { label: 'В норме', bg: 'bg-blue-50 text-blue-700 border-blue-200' } :
+                { label: 'Под угрозой', bg: 'bg-amber-50 text-amber-700 border-amber-200' }
 
     return (
         <div className="flex items-center gap-4 px-5 py-3.5 hover:bg-secondary/40 transition-colors border-b border-border last:border-0">

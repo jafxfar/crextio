@@ -32,7 +32,7 @@ function TemplateFormModal({
       <div className="bg-white rounded-2xl shadow-2xl w-full max-w-sm mx-4 overflow-hidden">
         <div className="flex items-center justify-between px-5 py-4 border-b border-border">
           <h3 className="text-sm font-semibold text-foreground">
-            {template ? 'Edit Certificate Template' : 'New Certificate Template'}
+            {template ? 'Редактировать шаблон' : 'Новый шаблон сертификата'}
           </h3>
           <button onClick={onClose} className="text-muted-foreground hover:text-foreground transition-colors">
             <X className="w-4 h-4" />
@@ -41,29 +41,29 @@ function TemplateFormModal({
 
         <div className="p-5 space-y-4">
           <div className="space-y-1.5">
-            <label className="text-xs font-medium text-foreground">Certificate Name</label>
+            <label className="text-xs font-medium text-foreground">Название сертификата</label>
             <input
               value={name}
               onChange={e => setName(e.target.value)}
-              placeholder="e.g. LOTO Certified"
+              placeholder="например, Сертификат по охране труда"
               className="w-full text-sm px-3 py-2 rounded-[10px] border border-border bg-secondary/50 focus:outline-none focus:ring-2 focus:ring-primary/30 placeholder:text-muted-foreground"
             />
           </div>
 
           <div className="space-y-1.5">
-            <label className="text-xs font-medium text-foreground">Description</label>
+            <label className="text-xs font-medium text-foreground">Описание</label>
             <textarea
               value={description}
               onChange={e => setDescription(e.target.value)}
               rows={2}
-              placeholder="Short description of this certificate..."
+              placeholder="Краткое описание сертификата..."
               className="w-full text-sm px-3 py-2 rounded-[10px] border border-border bg-secondary/50 focus:outline-none focus:ring-2 focus:ring-primary/30 placeholder:text-muted-foreground resize-none"
             />
           </div>
 
           {/* Validity */}
           <div className="space-y-2">
-            <label className="text-xs font-medium text-foreground">Validity Period</label>
+            <label className="text-xs font-medium text-foreground">Срок действия</label>
             <div className="flex items-center gap-3">
               <button
                 onClick={() => setHasExpiry(false)}
@@ -74,7 +74,7 @@ function TemplateFormModal({
                     : 'bg-secondary/50 text-muted-foreground border-border hover:border-foreground/30',
                 )}
               >
-                <Infinity className="w-3.5 h-3.5" /> No Expiry
+                <Infinity className="w-3.5 h-3.5" /> Бессрочный
               </button>
               <button
                 onClick={() => setHasExpiry(true)}
@@ -85,7 +85,7 @@ function TemplateFormModal({
                     : 'bg-secondary/50 text-muted-foreground border-border hover:border-foreground/30',
                 )}
               >
-                <Clock className="w-3.5 h-3.5" /> Expires
+                <Clock className="w-3.5 h-3.5" /> С истечением
               </button>
             </div>
 
@@ -98,7 +98,7 @@ function TemplateFormModal({
                   onChange={e => setValidityDays(Number(e.target.value))}
                   className="w-24 text-sm px-3 py-2 rounded-[10px] border border-border bg-secondary/50 focus:outline-none focus:ring-2 focus:ring-primary/30"
                 />
-                <span className="text-xs text-muted-foreground">days</span>
+                <span className="text-xs text-muted-foreground">дней</span>
                 {validityDays >= 365 && (
                   <span className="text-xs text-muted-foreground">
                     ({Math.round(validityDays / 365 * 10) / 10}y)
@@ -111,7 +111,7 @@ function TemplateFormModal({
 
         <div className="flex items-center justify-end gap-2 px-5 py-4 border-t border-border bg-secondary/30">
           <button onClick={onClose} className="px-4 py-2 rounded-[10px] text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
-            Cancel
+            Отмена
           </button>
           <button
             onClick={() => valid && onSave({ name: name.trim(), description: description.trim(), validityDays: hasExpiry ? validityDays : null })}
@@ -124,7 +124,7 @@ function TemplateFormModal({
             )}
           >
             <Check className="w-3.5 h-3.5" />
-            {template ? 'Save Changes' : 'Create Template'}
+            {template ? 'Сохранить' : 'Создать шаблон'}
           </button>
         </div>
       </div>
@@ -159,14 +159,14 @@ function TemplateCard({
           <button
             onClick={onEdit}
             className="w-7 h-7 rounded-[7px] flex items-center justify-center bg-secondary border border-border text-muted-foreground hover:text-foreground hover:bg-white transition-colors"
-            aria-label={`Edit ${template.name}`}
+            aria-label={`Редактировать ${template.name}`}
           >
             <Pencil className="w-3 h-3" />
           </button>
           <button
             onClick={onDelete}
             className="w-7 h-7 rounded-[7px] flex items-center justify-center bg-secondary border border-border text-muted-foreground hover:text-red-600 hover:bg-red-50 hover:border-red-200 transition-colors"
-            aria-label={`Delete ${template.name}`}
+            aria-label={`Удалить ${template.name}`}
           >
             <Trash2 className="w-3 h-3" />
           </button>
@@ -180,18 +180,18 @@ function TemplateCard({
               <Clock className="w-3.5 h-3.5 text-muted-foreground" />
               <span className="text-xs text-muted-foreground">
                 {template.validityDays >= 365
-                  ? `${Math.round(template.validityDays / 365 * 10) / 10}y validity`
-                  : `${template.validityDays}d validity`}
+                  ? `${Math.round(template.validityDays / 365 * 10) / 10} г. действия`
+                  : `${template.validityDays} д. действия`}
               </span>
             </>
           ) : (
             <>
               <Infinity className="w-3.5 h-3.5 text-emerald-500" />
-              <span className="text-xs text-emerald-600 font-medium">No expiry</span>
+              <span className="text-xs text-emerald-600 font-medium">Бессрочный</span>
             </>
           )}
         </div>
-        <span className="text-xs text-muted-foreground">{issuedCount} issued</span>
+        <span className="text-xs text-muted-foreground">{issuedCount} выдано</span>
       </div>
     </div>
   )
@@ -207,10 +207,10 @@ const STATUS_STYLES = {
 }
 
 const STATUS_LABELS = {
-  valid: 'Valid',
-  expiring_soon: 'Expiring Soon',
-  expired: 'Expired',
-  not_earned: 'Not Earned',
+  valid: 'Действующий',
+  expiring_soon: 'Истекает скоро',
+  expired: 'Истёкший',
+  not_earned: 'Не получен',
 }
 
 function IssuedCertsTable() {
@@ -232,8 +232,8 @@ function IssuedCertsTable() {
 
   return (
     <SectionCard
-      title="Issued Certificates"
-      subtitle={`${certifications.length} certificates issued`}
+      title="Выданные сертификаты"
+      subtitle={`Выдано сертификатов: ${certifications.length}`}
       noPadding
       action={
         <div className="flex items-center gap-2">
@@ -241,32 +241,32 @@ function IssuedCertsTable() {
             <Search className="w-3.5 h-3.5 text-muted-foreground shrink-0" />
             <input
               type="text"
-              placeholder="Search..."
+              placeholder="Поиск..."
               value={search}
               onChange={e => setSearch(e.target.value)}
               className="bg-transparent text-xs text-foreground placeholder:text-muted-foreground outline-none w-28"
             />
           </div>
           <button className="flex items-center gap-1.5 px-3 py-1.5 bg-foreground text-background rounded-[10px] text-xs font-medium hover:bg-foreground/90 transition-colors">
-            <Download className="w-3.5 h-3.5" /> Export
+            <Download className="w-3.5 h-3.5" /> Экспорт
           </button>
         </div>
       }
     >
       {/* Header */}
       <div className="grid grid-cols-[2fr_2fr_1.5fr_1fr_1fr] gap-4 px-5 py-2.5 bg-secondary border-b border-border text-[11px] font-semibold text-muted-foreground uppercase tracking-wide">
-        <span>Employee</span>
-        <span>Course / Certificate</span>
-        <span>Cert Number</span>
-        <span>Expires</span>
-        <span>Status</span>
+        <span>Сотрудник</span>
+        <span>Курс / Сертификат</span>
+        <span>Номер серт.</span>
+        <span>Истекает</span>
+        <span>Статус</span>
       </div>
 
       <div className="divide-y divide-border">
         {rows.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-12 text-muted-foreground">
             <Award className="w-8 h-8 mb-2 opacity-30" />
-            <p className="text-sm font-medium">No certificates found</p>
+            <p className="text-sm font-medium">Сертификаты не найдены</p>
           </div>
         ) : (
           rows.map(({ cert, user, course }) => (
@@ -280,7 +280,7 @@ function IssuedCertsTable() {
                   {user?.name.split(' ').map(n => n[0]).join('') ?? '?'}
                 </div>
                 <div className="min-w-0">
-                  <p className="text-sm font-medium text-foreground truncate">{user?.name ?? 'Unknown'}</p>
+                  <p className="text-sm font-medium text-foreground truncate">{user?.name ?? 'Неизвестно'}</p>
                   <p className="text-xs text-muted-foreground truncate">{user?.email ?? ''}</p>
                 </div>
               </div>
@@ -296,7 +296,7 @@ function IssuedCertsTable() {
 
               {/* Expires */}
               <p className="text-xs text-muted-foreground">
-                {cert.expiresAt ? new Date(cert.expiresAt).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' }) : '—'}
+                {cert.expiresAt ? new Date(cert.expiresAt).toLocaleDateString('ru-RU', { year: 'numeric', month: 'short', day: 'numeric' }) : '—'}
               </p>
 
               {/* Status */}
@@ -344,22 +344,22 @@ export function CertificatesManagement() {
 
       {/* Templates */}
       <SectionCard
-        title="Certificate Templates"
-        subtitle={`${templates.length} templates defined`}
+        title="Шаблоны сертификатов"
+        subtitle={`Определено шаблонов: ${templates.length}`}
         action={
           <button
             onClick={() => { setEditing(null); setModalOpen(true) }}
             className="flex items-center gap-1.5 px-3 py-1.5 bg-foreground text-background rounded-[10px] text-xs font-medium hover:bg-foreground/90 transition-colors"
           >
-            <Plus className="w-3.5 h-3.5" /> New Template
+            <Plus className="w-3.5 h-3.5" /> Новый шаблон
           </button>
         }
       >
         {templates.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-12 text-muted-foreground">
             <Award className="w-8 h-8 mb-2 opacity-30" />
-            <p className="text-sm font-medium">No templates yet</p>
-            <p className="text-xs mt-1">Create your first certificate template</p>
+            <p className="text-sm font-medium">Пока нет шаблонов</p>
+            <p className="text-xs mt-1">Создайте первый шаблон сертификата</p>
           </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">

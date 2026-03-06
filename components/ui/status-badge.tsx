@@ -35,11 +35,11 @@ export function StatusBadge({ variant, label, className, showDot = true }: Statu
 
 export function EnrollmentBadge({ status }: { status: EnrollmentStatus }) {
   const map: Record<EnrollmentStatus, { variant: BadgeVariant; label: string }> = {
-    not_started: { variant: 'neutral', label: 'Not Started' },
-    in_progress: { variant: 'info',    label: 'In Progress' },
-    completed:   { variant: 'success', label: 'Completed' },
-    overdue:     { variant: 'danger',  label: 'Overdue' },
-    failed:      { variant: 'warning', label: 'Failed' },
+    not_started: { variant: 'neutral', label: 'Не начат' },
+    in_progress: { variant: 'info',    label: 'В процессе' },
+    completed:   { variant: 'success', label: 'Завершён' },
+    overdue:     { variant: 'danger',  label: 'Просрочен' },
+    failed:      { variant: 'warning', label: 'Не пройден' },
   }
   const { variant, label } = map[status]
   return <StatusBadge variant={variant} label={label} />
@@ -47,10 +47,10 @@ export function EnrollmentBadge({ status }: { status: EnrollmentStatus }) {
 
 export function CertBadge({ status }: { status: CertificationStatus }) {
   const map: Record<CertificationStatus, { variant: BadgeVariant; label: string }> = {
-    valid:          { variant: 'success', label: 'Valid' },
-    expiring_soon:  { variant: 'warning', label: 'Expiring Soon' },
-    expired:        { variant: 'danger',  label: 'Expired' },
-    not_earned:     { variant: 'neutral', label: 'Not Earned' },
+    valid:          { variant: 'success', label: 'Действующий' },
+    expiring_soon:  { variant: 'warning', label: 'Истекает скоро' },
+    expired:        { variant: 'danger',  label: 'Истёкший' },
+    not_earned:     { variant: 'neutral', label: 'Не получен' },
   }
   const { variant, label } = map[status]
   return <StatusBadge variant={variant} label={label} />
@@ -58,9 +58,9 @@ export function CertBadge({ status }: { status: CertificationStatus }) {
 
 export function CourseBadge({ status }: { status: CourseStatus }) {
   const map: Record<CourseStatus, { variant: BadgeVariant; label: string }> = {
-    active:   { variant: 'success', label: 'Active' },
-    draft:    { variant: 'neutral', label: 'Draft' },
-    archived: { variant: 'neutral', label: 'Archived' },
+    active:   { variant: 'success', label: 'Активный' },
+    draft:    { variant: 'neutral', label: 'Черновик' },
+    archived: { variant: 'neutral', label: 'Архивный' },
   }
   const { variant, label } = map[status]
   return <StatusBadge variant={variant} label={label} />

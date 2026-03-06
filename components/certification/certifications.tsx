@@ -26,10 +26,10 @@ export function CertificationsPage() {
       {/* Summary metrics */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         {[
-          { label: 'Valid Certs', value: valid, icon: <CheckCircle2 className="w-4 h-4 text-white" />, bg: 'bg-emerald-500' },
-          { label: 'Expiring Soon', value: expiring, icon: <Clock className="w-4 h-4 text-white" />, bg: 'bg-amber-500' },
-          { label: 'Expired', value: expired, icon: <XCircle className="w-4 h-4 text-white" />, bg: 'bg-red-500' },
-          { label: 'Global Compliance', value: `${globalComplianceRate}%`, icon: <ShieldCheck className="w-4 h-4 text-primary-foreground" />, bg: 'bg-nav-pill' },
+          { label: 'Действующие серт.', value: valid, icon: <CheckCircle2 className="w-4 h-4 text-white" />, bg: 'bg-emerald-500' },
+          { label: 'Истекают скоро', value: expiring, icon: <Clock className="w-4 h-4 text-white" />, bg: 'bg-amber-500' },
+          { label: 'Истёкшие', value: expired, icon: <XCircle className="w-4 h-4 text-white" />, bg: 'bg-red-500' },
+          { label: 'Общее соответствие', value: `${globalComplianceRate}%`, icon: <ShieldCheck className="w-4 h-4 text-primary-foreground" />, bg: 'bg-nav-pill' },
         ].map(stat => (
           <div key={stat.label} className="border-gray-200 bg-white p-5 rounded-2xl shadow-[0_1px_4px_rgba(0,0,0,0.06)] flex items-center gap-4">
             <div className={cn('w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0', stat.bg)}>
@@ -47,11 +47,11 @@ export function CertificationsPage() {
 
         {/* Compliance trend */}
         <SectionCard
-          title="Compliance Rate Trend"
-          subtitle="6-month rolling average"
+          title="Динамика соответствия"
+          subtitle="Скользящее среднее за 6 месяцев"
           action={
             <span className="inline-flex items-center gap-1 text-[11px] bg-emerald-50 text-emerald-700 px-2 py-1 rounded-full font-medium border border-emerald-200">
-              <TrendingUp className="w-3 h-3" /> +7% since Aug
+              <TrendingUp className="w-3 h-3" /> +7% с августа
             </span>
           }
         >
@@ -59,7 +59,7 @@ export function CertificationsPage() {
         </SectionCard>
 
         {/* Department compliance */}
-        <SectionCard title="Compliance by Department" subtitle="Current period" noPadding>
+        <SectionCard title="Соответствие по отделам" subtitle="Текущий период" noPadding>
           {departmentStats.map(stat => (
             <DeptComplianceRow key={stat.department.id} stat={stat} />
           ))}
@@ -69,20 +69,20 @@ export function CertificationsPage() {
 
       {/* Certifications table */}
       <SectionCard
-        title="Active Certifications"
-        subtitle={`${certifications.length} issued certificates`}
+        title="Активные сертификаты"
+        subtitle={`Выдано сертификатов: ${certifications.length}`}
         noPadding
         action={
           <button className="flex items-center gap-1.5 px-3 py-1.5 bg-primary text-white rounded-[10px] text-xs font-medium hover:bg-primary/90 transition-colors">
-            <Download className="w-3.5 h-3.5" /> Export
+            <Download className="w-3.5 h-3.5" /> Экспорт
           </button>
         }
       >
         {/* Table header */}
         <div className="flex items-center justify-between px-5 py-2.5 bg-secondary border-b border-border text-[11px] font-semibold text-muted-foreground uppercase tracking-wide">
-          <span>Employee / Certificate</span>
-          <span className="hidden md:block">Cert Number · Expiry</span>
-          <span>Status</span>
+          <span>Сотрудник / Сертификат</span>
+          <span className="hidden md:block">Номер серт. · Истечение</span>
+          <span>Статус</span>
         </div>
         {certifications.map(cert => (
           <CertificationRow key={cert.id} cert={cert} />
@@ -91,20 +91,20 @@ export function CertificationsPage() {
 
       {/* Failed attempts remediation */}
       <SectionCard
-        title="Remediation Required"
-        subtitle="Employees who have failed and need follow-up"
+        title="Требуется пересдача"
+        subtitle="Сотрудники, не прошедшие курс и требующие внимания"
         noPadding
         action={
           <span className="inline-flex items-center gap-1 text-[11px] bg-red-50 text-red-600 px-2 py-1 rounded-full font-medium border border-red-200">
-            <AlertTriangle className="w-3 h-3" /> {failedAttempts.length} employees
+            <AlertTriangle className="w-3 h-3" /> {failedAttempts.length} сотрудников
           </span>
         }
       >
         <div className="flex items-center gap-4 px-5 py-2.5 bg-secondary border-b border-border text-[11px] font-semibold text-muted-foreground uppercase tracking-wide">
-          <span className="flex-1">Employee · Course</span>
-          <span className="hidden md:block w-24">Score</span>
-          <span className="w-20">Attempts</span>
-          <span className="w-24">Action</span>
+          <span className="flex-1">Сотрудник · Курс</span>
+          <span className="hidden md:block w-24">Балл</span>
+          <span className="w-20">Попытки</span>
+          <span className="w-24">Действие</span>
         </div>
         <div className="divide-y divide-border">
           {failedAttempts.map((item, i) => (
@@ -135,7 +135,7 @@ export function CertificationsPage() {
               </div>
               <div className="w-24">
                 <button className="flex items-center gap-1 px-2.5 py-1.5 bg-primary/10 text-primary rounded-[8px] text-[11px] font-medium hover:bg-primary/20 transition-colors">
-                  <RefreshCw className="w-3 h-3" /> Re-assign
+                  <RefreshCw className="w-3 h-3" /> Переназначить
                 </button>
               </div>
             </div>

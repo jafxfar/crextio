@@ -8,7 +8,7 @@ export default function Page() {
   const top3 = users.slice(0, 3)
 
   return (
-    <DashboardShell title="Users & XP" subtitle="Employee performance and leaderboard">
+    <DashboardShell title="Пользователи и XP" subtitle="Производительность сотрудников и таблица лидеров">
       <div className="space-y-5">
 
         <Podium users={top3} />

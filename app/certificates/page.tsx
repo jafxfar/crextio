@@ -10,36 +10,36 @@ export default function CertificatesPage() {
   const expired = certifications.filter(c => c.status === 'expired').length
 
   return (
-    <DashboardShell title="Certificates" subtitle="Manage certificate templates and track issued certificates">
+    <DashboardShell title="Сертификаты" subtitle="Управление шаблонами сертификатов и учёт выданных сертификатов">
       <div className="space-y-5">
 
         {/* Summary cards */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
           <MetricCard
-            title="Templates"
+            title="Шаблоны"
             value={certificateTemplates.length}
-            subtitle="Defined certificate types"
+            subtitle="Типы сертификатов"
             icon={<Award className="w-4 h-4 text-white" />}
             accentColor="bg-amber-500"
           />
           <MetricCard
-            title="Valid"
+            title="Действующие"
             value={valid}
-            subtitle="Active certificates"
+            subtitle="Активные сертификаты"
             icon={<CheckCircle2 className="w-4 h-4 text-white" />}
             accentColor="bg-emerald-500"
           />
           <MetricCard
-            title="Expiring Soon"
+            title="Истекают скоро"
             value={expiring}
-            subtitle="Within 30 days"
+            subtitle="В течение 30 дней"
             icon={<Clock className="w-4 h-4 text-white" />}
             accentColor="bg-amber-400"
           />
           <MetricCard
-            title="Expired"
+            title="Истекшие"
             value={expired}
-            subtitle="Need renewal"
+            subtitle="Требуют продления"
             icon={<XCircle className="w-4 h-4 text-white" />}
             accentColor="bg-red-500"
           />

@@ -15,36 +15,36 @@ export default function SkillsPage() {
   const topCategory = statsByCategory.sort((a, b) => b.count - a.count)[0]
 
   return (
-    <DashboardShell title="Skills" subtitle="Manage the skill library assigned to employees and courses">
+    <DashboardShell title="Навыки" subtitle="Управление библиотекой навыков, назначенных сотрудникам и курсам">
       <div className="space-y-5">
 
         {/* Summary cards */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
           <MetricCard
-            title="Total Skills"
+            title="Всего навыков"
             value={skills.length}
-            subtitle="Across all categories"
+            subtitle="По всем категориям"
             icon={<Star className="w-4 h-4 text-white" />}
             accentColor="bg-foreground"
           />
           <MetricCard
-            title="Categories"
+            title="Категории"
             value={categories.length}
-            subtitle="Skill groupings"
+            subtitle="Группы навыков"
             icon={<Tag className="w-4 h-4 text-white" />}
             accentColor="bg-violet-500"
           />
           <MetricCard
-            title="Largest Category"
+            title="Наибольшая категория"
             value={topCategory?.count ?? 0}
             subtitle={topCategory?.name ?? '—'}
             icon={<Layers className="w-4 h-4 text-white" />}
             accentColor="bg-blue-500"
           />
           <MetricCard
-            title="Assigned to Users"
+            title="Назначено пользователям"
             value="36"
-            subtitle="Skill assignments"
+            subtitle="Назначений навыков"
             icon={<Users className="w-4 h-4 text-white" />}
             accentColor="bg-emerald-500"
           />

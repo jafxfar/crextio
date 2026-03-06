@@ -29,9 +29,9 @@ export function CertificationRow({ cert }: { cert: typeof certifications[0] }) {
                 <div className="hidden md:block text-right">
                     <p className="text-[11px] text-muted-foreground font-mono">{cert.certNumber}</p>
                     <p className="text-[11px] text-muted-foreground">
-                        Expires {cert.expiresAt}
+                        Истекает {cert.expiresAt}
                         {daysLeft > 0 && daysLeft < 90 && (
-                            <span className="text-amber-600 ml-1">({daysLeft}d)</span>
+                            <span className="text-amber-600 ml-1">({daysLeft}д.)</span>
                         )}
                     </p>
                 </div>

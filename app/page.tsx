@@ -4,8 +4,8 @@ import { DashboardOverview } from '@/components/dashboard/overview'
 export default function DashboardPage() {
   return (
     <DashboardShell
-      title="Hello, Admin"
-      subtitle="Jupiter is running smoothly. Here's what's happening with your company today."
+      title="Добро пожаловать, Администратор"
+      subtitle="Система работает в штатном режиме. Вот что происходит в вашей компании сегодня."
     >
       <DashboardOverview />
     </DashboardShell>

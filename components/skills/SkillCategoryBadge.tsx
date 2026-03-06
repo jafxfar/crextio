@@ -3,6 +3,13 @@
 import { cn } from '@/lib/utils'
 
 const categoryStyles: Record<string, string> = {
+  Безопасность: 'bg-red-50 text-red-700 border-red-200',
+  Качество: 'bg-blue-50 text-blue-700 border-blue-200',
+  Операции: 'bg-amber-50 text-amber-700 border-amber-200',
+  Оборудование: 'bg-orange-50 text-orange-700 border-orange-200',
+  Аналитика: 'bg-violet-50 text-violet-700 border-violet-200',
+  'Гибкие навыки': 'bg-emerald-50 text-emerald-700 border-emerald-200',
+  // legacy English keys (for existing data)
   Safety: 'bg-red-50 text-red-700 border-red-200',
   Quality: 'bg-blue-50 text-blue-700 border-blue-200',
   Operations: 'bg-amber-50 text-amber-700 border-amber-200',

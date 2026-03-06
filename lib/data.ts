@@ -243,18 +243,18 @@ export interface Skill {
 }
 
 export const skills: Skill[] = [
-  { id: 'sk1', name: 'Machine Safety', icon: '⚙️', category: 'Safety' },
-  { id: 'sk2', name: 'Electrical Safety', icon: '⚡', category: 'Safety' },
-  { id: 'sk3', name: 'Fire Prevention', icon: '🔥', category: 'Safety' },
-  { id: 'sk4', name: 'Quality Control', icon: '✅', category: 'Quality' },
-  { id: 'sk5', name: 'Lean Manufacturing', icon: '📉', category: 'Operations' },
-  { id: 'sk6', name: 'Six Sigma', icon: '📊', category: 'Operations' },
-  { id: 'sk7', name: 'Forklift Operation', icon: '🏗️', category: 'Equipment' },
-  { id: 'sk8', name: 'PPE Usage', icon: '🦺', category: 'Safety' },
-  { id: 'sk9', name: 'Emergency Response', icon: '🚨', category: 'Safety' },
-  { id: 'sk10', name: 'ISO Standards', icon: '📋', category: 'Quality' },
-  { id: 'sk11', name: 'Data Analysis', icon: '🔬', category: 'Analytics' },
-  { id: 'sk12', name: 'Leadership', icon: '👥', category: 'Soft Skills' },
+  { id: 'sk1', name: 'Machine Safety', icon: '⚙️', category: 'Безопасность' },
+  { id: 'sk2', name: 'Electrical Safety', icon: '⚡', category: 'Безопасность' },
+  { id: 'sk3', name: 'Fire Prevention', icon: '🔥', category: 'Безопасность' },
+  { id: 'sk4', name: 'Quality Control', icon: '✅', category: 'Качество' },
+  { id: 'sk5', name: 'Lean Manufacturing', icon: '📉', category: 'Операции' },
+  { id: 'sk6', name: 'Six Sigma', icon: '📊', category: 'Операции' },
+  { id: 'sk7', name: 'Forklift Operation', icon: '🏗️', category: 'Оборудование' },
+  { id: 'sk8', name: 'PPE Usage', icon: '🦺', category: 'Безопасность' },
+  { id: 'sk9', name: 'Emergency Response', icon: '🚨', category: 'Безопасность' },
+  { id: 'sk10', name: 'ISO Standards', icon: '📋', category: 'Качество' },
+  { id: 'sk11', name: 'Data Analysis', icon: '🔬', category: 'Аналитика' },
+  { id: 'sk12', name: 'Leadership', icon: '👥', category: 'Гибкие навыки' },
 ]
 
 // ─── Certificate Templates ────────────────────────────────────────────────────

@@ -35,10 +35,10 @@ export function CoursesPage() {
       {/* Summary pills */}
       <div className="flex items-center gap-3 flex-wrap">
         {[
-          { label: 'Total', value: stats.total, dark: true },
-          { label: 'Active', value: stats.active },
-          { label: 'Compliance', value: stats.compliance },
-          { label: 'Draft', value: stats.draft },
+          { label: 'Всего', value: stats.total, dark: true },
+          { label: 'Активные', value: stats.active },
+          { label: 'Соответствие', value: stats.compliance },
+          { label: 'Черновики', value: stats.draft },
         ].map(s => (
           <div key={s.label} className="flex items-center gap-2">
             <span className="text-xs text-muted-foreground">{s.label}</span>
@@ -66,7 +66,7 @@ export function CoursesPage() {
                   : 'text-muted-foreground hover:text-foreground',
               )}
             >
-              {f.charAt(0).toUpperCase() + f.slice(1)}
+              {{'all': 'Все', 'compliance': 'Соответствие', 'active': 'Активные', 'draft': 'Черновики'}[f] ?? f}
             </button>
           ))}
         </div>
@@ -75,7 +75,7 @@ export function CoursesPage() {
             <Search className="w-3.5 h-3.5 text-muted-foreground flex-shrink-0" />
             <input
               type="text"
-              placeholder="Search courses..."
+              placeholder="Поиск курсов..."
               value={search}
               onChange={e => setSearch(e.target.value)}
               className="bg-transparent text-sm text-foreground placeholder:text-muted-foreground outline-none flex-1 min-w-0"
@@ -84,7 +84,7 @@ export function CoursesPage() {
           <button
             onClick={() => setCreateOpen(true)}
             className="flex items-center gap-1.5 px-4 py-2 bg-nav-pill text-white rounded-full text-[12px] font-medium hover:opacity-90 transition-opacity flex-shrink-0">
-            <PlusCircle className="w-3.5 h-3.5" /> New Course
+            <PlusCircle className="w-3.5 h-3.5" /> Новый курс
           </button>
         </div>
       </div>
@@ -97,7 +97,7 @@ export function CoursesPage() {
         {filtered.length === 0 && (
           <div className="col-span-full bg-card border border-border rounded-[16px] p-12 text-center">
             <BookOpen className="w-8 h-8 text-muted-foreground mx-auto mb-3" />
-            <p className="text-sm text-muted-foreground">No courses match your filter</p>
+            <p className="text-sm text-muted-foreground">Курсы не найдены</p>
           </div>
         )}
       </div>

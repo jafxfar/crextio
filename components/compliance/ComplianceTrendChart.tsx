@@ -4,12 +4,12 @@ import {
 } from 'recharts'
 
 const complianceTrend = [
-  { month: 'Aug', rate: 76 },
-  { month: 'Sep', rate: 78 },
-  { month: 'Oct', rate: 80 },
-  { month: 'Nov', rate: 79 },
-  { month: 'Dec', rate: 82 },
-  { month: 'Jan', rate: 83 },
+  { month: 'Авг', rate: 76 },
+  { month: 'Сен', rate: 78 },
+  { month: 'Окт', rate: 80 },
+  { month: 'Ноя', rate: 79 },
+  { month: 'Дек', rate: 82 },
+  { month: 'Янв', rate: 83 },
 ]
 
 export function ComplianceTrendChart() {
@@ -27,7 +27,7 @@ export function ComplianceTrendChart() {
         <YAxis tick={{ fontSize: 11, fill: '#6B7280' }} axisLine={false} tickLine={false} domain={[60, 100]} tickFormatter={v => `${v}%`} />
         <Tooltip
           contentStyle={{ background: 'white', border: '1px solid #E5E7EB', borderRadius: '12px', fontSize: 12 }}
-          formatter={(v: number) => [`${v}%`, 'Compliance Rate']}
+          formatter={(v: number) => [`${v}%`, 'Показатель соответствия']}
         />
         <Area type="monotone" dataKey="rate" stroke="oklch(0.82 0.165 90)" strokeWidth={2.5} fill="url(#compGrad)" dot={{ fill: 'oklch(0.14 0.012 60)', strokeWidth: 0, r: 3 }} />
       </AreaChart>

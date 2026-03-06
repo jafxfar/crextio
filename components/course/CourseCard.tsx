@@ -35,7 +35,7 @@ export function CourseCard({ course }: { course: typeof courses[0] }) {
                 <div className="flex items-center gap-1.5 flex-shrink-0 flex-wrap justify-end">
                     <CourseBadge status={course.status} />
                     {course.isCompliance && (
-                        <StatusBadge variant="info" label="Compliance" />
+                        <StatusBadge variant="info" label="Соответствие" />
                     )}
                 </div>
             </div>
@@ -54,11 +54,11 @@ export function CourseCard({ course }: { course: typeof courses[0] }) {
                     <Users className="w-3 h-3" /> {course.totalEnrolled}
                 </span>
                 <span className="flex items-center gap-1">
-                    <BarChart2 className="w-3 h-3" /> Avg {course.avgScore ?? '—'}%
+                    <BarChart2 className="w-3 h-3" /> Сред. {course.avgScore ?? '—'}%
                 </span>
                 {course.certificationName && (
                     <span className="flex items-center gap-1 text-amber-600 font-medium">
-                        <Award className="w-3 h-3" /> Cert
+                        <Award className="w-3 h-3" /> Серт.
                     </span>
                 )}
             </div>
@@ -67,7 +67,7 @@ export function CourseCard({ course }: { course: typeof courses[0] }) {
             {course.status === 'active' && course.totalEnrolled > 0 && (
                 <div>
                     <div className="flex items-center justify-between mb-1.5">
-                        <span className="text-[11px] text-muted-foreground">Completion</span>
+                        <span className="text-[11px] text-muted-foreground">Завершение</span>
                         <span className="text-[11px] font-bold text-foreground">{course.completionRate}%</span>
                     </div>
                     <ProgressBar value={course.completionRate} color={compColor} />
@@ -90,7 +90,7 @@ export function CourseCard({ course }: { course: typeof courses[0] }) {
                         href="/courses/edit"
                         className="flex items-center gap-1 px-2.5 py-1 rounded-full bg-secondary hover:bg-primary hover:text-primary-foreground text-muted-foreground text-[11px] font-medium transition-all border border-border hover:border-primary"
                     >
-                        <Pencil className="w-2.5 h-2.5" /> Edit
+                        <Pencil className="w-2.5 h-2.5" /> Изменить
                     </Link>
                 </div>
             </div>
