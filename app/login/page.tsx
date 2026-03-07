@@ -1,24 +1,38 @@
 'use client'
 
-import { useState } from 'react'
+import { Suspense, useState } from 'react'
 import Link from 'next/link'
-import { Eye, EyeOff, GraduationCap } from 'lucide-react'
+import { Eye, EyeOff } from 'lucide-react'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { cn } from '@/lib/utils'
 import AccProspLogo from '@/public/noroot.png'
 import Image from 'next/image'
+import { login } from '@/lib/auth'
 
-export default function LoginPage() {
+function LoginForm() {
+  const router = useRouter()
+  const searchParams = useSearchParams()
+  const callbackUrl = searchParams.get('callbackUrl') ?? '/'
+
   const [showPassword, setShowPassword] = useState(false)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsLoading(true)
-    // TODO: implement auth logic
-    await new Promise((r) => setTimeout(r, 1000))
-    setIsLoading(false)
+    setError(null)
+
+    try {
+      await login({ email, password })
+      router.push(callbackUrl)
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Ошибка входа. Проверьте данные.')
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   return (
@@ -238,6 +252,13 @@ export default function LoginPage() {
                 <span className="text-sm text-muted-foreground">Запомнить меня</span>
               </label>
 
+              {/* Error message */}
+              {error && (
+                <p role="alert" className="text-sm text-red-600 bg-red-50 border border-red-200 rounded-xl px-4 py-2.5">
+                  {error}
+                </p>
+              )}
+
               {/* Submit */}
               <button
                 type="submit"
@@ -291,5 +312,13 @@ export default function LoginPage() {
         </div>
       </div>
     </div>
+  )
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense>
+      <LoginForm />
+    </Suspense>
   )
 }

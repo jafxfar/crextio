@@ -68,7 +68,7 @@ export function CreateChapterModal({
               <BookOpen className="w-4 h-4 text-foreground" />
             </div>
             <div>
-              <h2 className="text-[15px] font-bold text-foreground leading-tight">New Chapter</h2>
+              <h2 className="text-[15px] font-bold text-foreground leading-tight">Новая глава</h2>
               <p className="text-[11px] text-muted-foreground mt-0.5 truncate max-w-[220px]">
                 {moduleTitle}
               </p>
@@ -87,7 +87,7 @@ export function CreateChapterModal({
         <form onSubmit={handleSubmit} className="px-6 py-5 space-y-4">
           <div>
             <label className="block text-[12px] font-semibold text-foreground mb-1.5">
-              Chapter Title <span className="text-red-500">*</span>
+              Заголовок <span className="text-red-500">*</span>
             </label>
             <input
               autoFocus
@@ -106,7 +106,7 @@ export function CreateChapterModal({
               onClick={handleClose}
               className="px-4 py-2 rounded-xl text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-accent border border-border transition-colors"
             >
-              Cancel
+              Отмена
             </button>
             <button
               type="submit"
@@ -117,9 +117,9 @@ export function CreateChapterModal({
               )}
             >
               {loading ? (
-                <><Loader2 className="w-3.5 h-3.5 animate-spin" /> Creating…</>
+                <><Loader2 className="w-3.5 h-3.5 animate-spin" /> загрузка</>
               ) : (
-                'Create Chapter'
+                'Создать главу'
               )}
             </button>
           </div>

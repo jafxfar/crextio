@@ -78,10 +78,10 @@ export default function MonthlyTarget() {
         <div className="flex justify-between">
           <div>
             <h3 className="text-lg font-semibold text-gray-800 dark:text-white/90">
-              Месячный план
+              Месячный план обучения
             </h3>
             <p className="mt-1 font-normal text-gray-500 text-theme-sm dark:text-gray-400">
-              Цель, установленная на каждый месяц
+              Цель по прохождению курсов на месяц
             </p>
           </div>
           <div className="relative inline-block">
@@ -125,17 +125,17 @@ export default function MonthlyTarget() {
           </span>
         </div>
         <p className="mx-auto mt-10 w-full max-w-[380px] text-center text-sm text-gray-500 sm:text-base">
-          Сегодня вы заработали $3287 — это больше, чем в прошлом месяце. Так держать!
+          В этом месяце курсы завершили 76 сотрудников — на 10% больше, чем в прошлом. Отличный результат!
         </p>
       </div>
 
       <div className="flex items-center justify-center gap-5 px-6 py-3.5 sm:gap-8 sm:py-5">
         <div>
           <p className="mb-1 text-center text-gray-500 text-theme-xs dark:text-gray-400 sm:text-sm">
-            План
+            Цель
           </p>
           <p className="flex items-center justify-center gap-1 text-base font-semibold text-gray-800 dark:text-white/90 sm:text-lg">
-            $20K
+            100
             <svg
               width="16"
               height="16"
@@ -157,10 +157,10 @@ export default function MonthlyTarget() {
 
         <div>
           <p className="mb-1 text-center text-gray-500 text-theme-xs dark:text-gray-400 sm:text-sm">
-            Выручка
+            Завершили
           </p>
           <p className="flex items-center justify-center gap-1 text-base font-semibold text-gray-800 dark:text-white/90 sm:text-lg">
-            $20K
+            76
             <svg
               width="16"
               height="16"
@@ -182,10 +182,10 @@ export default function MonthlyTarget() {
 
         <div>
           <p className="mb-1 text-center text-gray-500 text-theme-xs dark:text-gray-400 sm:text-sm">
-            Сегодня
+            В процессе
           </p>
           <p className="flex items-center justify-center gap-1 text-base font-semibold text-gray-800 dark:text-white/90 sm:text-lg">
-            $20K
+            24
             <svg
               width="16"
               height="16"

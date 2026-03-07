@@ -96,7 +96,7 @@ function StepRow({ step, index, onOpen, onDelete }: {
   )
 }
 
-// ─── Add step modal ───────────────────────────────────────────────────────────
+// ─── Добавить шаг modal ───────────────────────────────────────────────────────────
 
 const STEP_TYPES: Array<{ type: EditorStep['type']; label: string; icon: React.ElementType; desc: string }> = [
   { type: 'info',  label: 'Text',  icon: BookOpen,  desc: 'Rich text / article content' },
@@ -126,7 +126,7 @@ function AddStepModal({ open, onClose, onCreate }: {
       onClick={(e) => { if (e.target === e.currentTarget) onClose() }}>
       <div className="bg-card border border-border rounded-2xl shadow-2xl w-full max-w-md mx-4 overflow-hidden">
         <div className="px-6 py-5 border-b border-border">
-          <h2 className="text-[15px] font-bold text-foreground">Add Step</h2>
+          <h2 className="text-[15px] font-bold text-foreground">Добавить шаг</h2>
           <p className="text-[12px] text-muted-foreground mt-0.5">Choose a step type and give it a title.</p>
         </div>
         <form onSubmit={handleSubmit}>
@@ -155,7 +155,7 @@ function AddStepModal({ open, onClose, onCreate }: {
             <button type="button" onClick={onClose}
               className="px-4 py-2 rounded-xl text-[13px] font-medium text-muted-foreground hover:text-foreground hover:bg-accent transition-colors">Cancel</button>
             <button type="submit" disabled={!title.trim()}
-              className="px-5 py-2 rounded-xl bg-nav-pill text-white text-[13px] font-semibold hover:opacity-90 disabled:opacity-40 transition-all shadow-sm">Add Step</button>
+              className="px-5 py-2 rounded-xl bg-nav-pill text-white text-[13px] font-semibold hover:opacity-90 disabled:opacity-40 transition-all shadow-sm">Добавить шаг</button>
           </div>
         </form>
       </div>
@@ -832,7 +832,7 @@ export function StepsPanel({ chapter, moduleTitle, moduleIndex, onChange, onChap
           </div>
           <button type="button" onClick={() => setAddOpen(true)}
             className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-white/15 hover:bg-white/25 text-white text-[12px] font-semibold transition-all">
-            <PlusCircle className="w-3.5 h-3.5" /> Add Step
+            <PlusCircle className="w-3.5 h-3.5" /> Добавить шаг
           </button>
         </div>
 
@@ -842,11 +842,11 @@ export function StepsPanel({ chapter, moduleTitle, moduleIndex, onChange, onChap
               <div className="w-12 h-12 rounded-2xl bg-secondary flex items-center justify-center mb-3">
                 <HelpCircle className="w-6 h-6 text-muted-foreground/40" />
               </div>
-              <p className="text-[13px] font-semibold text-foreground mb-1">No steps yet</p>
-              <p className="text-[12px] text-muted-foreground mb-4">Add your first step to this chapter.</p>
+              <p className="text-[13px] font-semibold text-foreground mb-1">Пока никаких шагов</p>
+              <p className="text-[12px] text-muted-foreground mb-4">Добавьте свой первый шаг к этой главе.</p>
               <button type="button" onClick={() => setAddOpen(true)}
                 className="flex items-center gap-1.5 px-4 py-2 bg-nav-pill text-white rounded-xl text-[12px] font-semibold hover:opacity-90 transition-all shadow-sm">
-                <PlusCircle className="w-3.5 h-3.5" /> Add First Step
+                <PlusCircle className="w-3.5 h-3.5" /> Добавьте первый шаг
               </button>
             </div>
           ) : (

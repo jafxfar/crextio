@@ -4,10 +4,11 @@ import { useState } from 'react'
 import { SectionCard } from '@/components/ui/metric-card'
 import {
     Zap, Search, Award,
-    ChevronUp, ChevronDown
+    ChevronUp, ChevronDown, Plus
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { User, Department } from "@/lib/data";
+import { CreateUserModal } from './CreateUserModal'
 
 interface UserTableProps {
     users: User[]
@@ -37,6 +38,7 @@ export function UserTable(props: UserTableProps) {
     const [search, setSearch] = useState('')
     const [sortBy, setSortBy] = useState<'xp' | 'completed' | 'certs'>('xp')
     const [sortDir, setSortDir] = useState<'desc' | 'asc'>('desc')
+    const [createOpen, setCreateOpen] = useState(false)
 
     const sorted = [...users]
         .filter(u => u.name.toLowerCase().includes(search.toLowerCase()) || u.email.toLowerCase().includes(search.toLowerCase()))
@@ -61,7 +63,7 @@ export function UserTable(props: UserTableProps) {
     }
 
     return (
-
+        <>
         <SectionCard
             title="Все пользователи"
             subtitle={`${users.length} активных сотрудников`}
@@ -69,7 +71,7 @@ export function UserTable(props: UserTableProps) {
             action={
                 <div className="flex items-center gap-2">
                     <div className="flex items-center gap-1.5 bg-card border border-border rounded-full px-3 py-1.5 shadow-[0_1px_4px_rgba(0,0,0,0.05)]">
-                        <Search className="w-3.5 h-3.5 text-muted-foreground flex-shrink-0" />
+                        <Search className="w-3.5 h-3.5 text-muted-foreground shrink-0" />
                         <input
                             type="text"
                             placeholder="Поиск..."
@@ -78,6 +80,13 @@ export function UserTable(props: UserTableProps) {
                             className="bg-transparent text-xs text-foreground placeholder:text-muted-foreground outline-none w-32"
                         />
                     </div>
+                    <button
+                        onClick={() => setCreateOpen(true)}
+                        className="flex items-center gap-1.5 bg-foreground text-background rounded-full px-3.5 py-1.5 text-xs font-semibold hover:opacity-90 active:scale-[0.98] transition-all"
+                    >
+                        <Plus className="w-3.5 h-3.5" />
+                        Создать
+                    </button>
                 </div>
             }
         >
@@ -107,7 +116,7 @@ export function UserTable(props: UserTableProps) {
                         >
                             {/* Employee */}
                             <div className="flex items-center gap-3 min-w-0">
-                                <div className="relative flex-shrink-0">
+                                <div className="relative shrink-0">
                                     <div
                                         className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold text-white"
                                         style={{ backgroundColor: dept?.color || '#6B7280' }}
@@ -168,5 +177,14 @@ export function UserTable(props: UserTableProps) {
             </div>
         </SectionCard>
 
+        <CreateUserModal
+            open={createOpen}
+            onClose={() => setCreateOpen(false)}
+            onCreated={() => {
+                // TODO: refresh users list from API when backend list endpoint is available
+                setCreateOpen(false)
+            }}
+        />
+        </>
     )
 }
