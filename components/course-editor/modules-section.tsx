@@ -22,10 +22,10 @@ import { CreateChapterModal } from './create-chapter-modal'
 // ─── Step type meta ───────────────────────────────────────────────────────────
 
 const stepMeta: Record<string, { icon: React.ElementType; label: string; color: string; bg: string }> = {
-  info:  { icon: FileText,   label: 'Info',  color: 'text-blue-600',    bg: 'bg-blue-50 border-blue-200' },
-  video: { icon: Video,      label: 'Video', color: 'text-purple-600',  bg: 'bg-purple-50 border-purple-200' },
-  question:  { icon: HelpCircle, label: 'question',  color: 'text-amber-600',   bg: 'bg-amber-50 border-amber-200' },
-  file:  { icon: FileText,   label: 'File',  color: 'text-emerald-600', bg: 'bg-emerald-50 border-emerald-200' },
+  info: { icon: FileText, label: 'Info', color: 'text-blue-600', bg: 'bg-blue-50 border-blue-200' },
+  video: { icon: Video, label: 'Video', color: 'text-purple-600', bg: 'bg-purple-50 border-purple-200' },
+  question: { icon: HelpCircle, label: 'question', color: 'text-amber-600', bg: 'bg-amber-50 border-amber-200' },
+  file: { icon: FileText, label: 'File', color: 'text-emerald-600', bg: 'bg-emerald-50 border-emerald-200' },
 }
 
 // ─── Step row ─────────────────────────────────────────────────────────────────
@@ -117,10 +117,9 @@ function ChapterRow({
           {chapter.steps.length === 0 ? (
             <div className="flex flex-col items-center justify-center py-8 text-center rounded-xl border border-dashed border-border">
               <FileText className="w-6 h-6 text-muted-foreground/30 mb-2" />
-              <p className="text-[12px] font-semibold text-foreground mb-1">No steps yet</p>
+              <p className="text-[12px] font-semibold text-foreground mb-1">Шагов пока нет</p>
               <p className="text-[11px] text-muted-foreground mb-2.5 max-w-[220px]">
-                Add info, video, question or file steps to fill this chapter.
-              </p>
+                Добавьте информацию, видео, вопрос или пошаговый файл, чтобы заполнить эту главу.              </p>
               <button
                 type="button"
                 onClick={onAddStep}
@@ -138,7 +137,7 @@ function ChapterRow({
             </>
           )}
 
-          {/* Add step button */}
+          {/* Добавить шаг button */}
           {chapter.steps.length > 0 && (
             <button
               type="button"
@@ -146,7 +145,7 @@ function ChapterRow({
               className="flex items-center gap-1.5 text-[11px] font-medium text-muted-foreground hover:text-foreground transition-colors mt-0.5 px-1"
             >
               <PlusCircle className="w-3.5 h-3.5" />
-              Add Step
+              Добавить шаг
             </button>
           )}
         </div>
@@ -239,7 +238,7 @@ function ModuleCard({
                 className="flex items-center gap-1.5 px-3 py-1.5 bg-white/10 hover:bg-white/20 text-white rounded-lg text-[11px] font-semibold transition-colors border border-white/15"
               >
                 <PlusCircle className="w-3.5 h-3.5" />
-                Add Chapter
+                Добавить главу
               </button>
             </div>
           ) : (
@@ -250,7 +249,7 @@ function ModuleCard({
                   chapter={chapter}
                   moduleIndex={moduleIndex}
                   chapterIndex={idx + 1}
-                  onAddStep={() => {/* step modal later */}}
+                  onAddStep={() => {/* step modal later */ }}
                 />
               ))}
 
@@ -261,7 +260,7 @@ function ModuleCard({
                 className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-white/30 hover:text-white/60 hover:bg-white/5 transition-colors text-[11px] font-medium border border-dashed border-white/10 mt-1"
               >
                 <PlusCircle className="w-3.5 h-3.5" />
-                Add Chapter
+                Добавить главу
               </button>
             </>
           )}
@@ -336,9 +335,9 @@ export function ModulesSection({ courseTitle, modules, onChange }: ModulesSectio
           <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-4">
             <GraduationCap className="w-7 h-7 text-foreground/60" />
           </div>
-          <h3 className="text-[15px] font-bold text-foreground mb-1.5">No modules yet</h3>
+          <h3 className="text-[15px] font-bold text-foreground mb-1.5">Модулей пока нет</h3>
           <p className="text-sm text-muted-foreground max-w-xs leading-relaxed">
-            Modules group chapters and steps. Add your first module to start building the course.
+            Добавьте свой первый модуль, чтобы начать создание курса.
           </p>
           <button
             type="button"
@@ -346,7 +345,7 @@ export function ModulesSection({ courseTitle, modules, onChange }: ModulesSectio
             className="mt-5 flex items-center gap-2 px-5 py-2.5 bg-nav-pill text-white rounded-xl text-[13px] font-semibold hover:opacity-90 transition-all shadow-sm"
           >
             <PlusCircle className="w-4 h-4" />
-            Add First Module
+            Добавить Первый модуль
           </button>
         </div>
       ) : (

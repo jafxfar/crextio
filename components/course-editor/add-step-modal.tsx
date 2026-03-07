@@ -104,7 +104,7 @@ export function AddStepModal({ open, onClose, onCreate }: AddStepModalProps) {
     >
       <div className="bg-card border border-border rounded-2xl shadow-2xl w-full max-w-md mx-4 overflow-hidden">
         <div className="px-6 py-5 border-b border-border">
-          <h2 className="text-[15px] font-bold text-foreground">Add Step</h2>
+          <h2 className="text-[15px] font-bold text-foreground">Добавить шаг</h2>
           <p className="text-[12px] text-muted-foreground mt-0.5">
             Each step holds either <strong>one piece of content</strong> or <strong>one question</strong>.
           </p>
@@ -203,7 +203,7 @@ export function AddStepModal({ open, onClose, onCreate }: AddStepModalProps) {
               disabled={!title.trim()}
               className="px-5 py-2 rounded-xl bg-nav-pill text-white text-[13px] font-semibold hover:opacity-90 disabled:opacity-40 transition-all shadow-sm"
             >
-              Add Step
+              Добавить шаг
             </button>
           </div>
         </form>

@@ -9,6 +9,7 @@ import {
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { departments, certificateTemplates, skills } from '@/lib/data'
+import { createCourse } from '@/lib/courses-api'
 
 interface CreateCourseModalProps {
   open: boolean
@@ -56,6 +57,7 @@ export function CreateCourseModal({ open, onClose }: CreateCourseModalProps) {
   const router = useRouter()
   const [step, setStep] = useState<Step>(1)
   const [loading, setLoading] = useState(false)
+  const [submitError, setSubmitError] = useState<string | null>(null)
   const fileInputRef = useRef<HTMLInputElement>(null)
 
   const [form, setForm] = useState<FormState>({
@@ -115,20 +117,35 @@ export function CreateCourseModal({ open, onClose }: CreateCourseModalProps) {
 
   // ─── submit ───────────────────────────────────────────────────────────────
 
-  function handleSubmit() {
+  async function handleSubmit() {
     if (!form.title.trim()) return
     setLoading(true)
-    setTimeout(() => {
-      const newId = `c-${Date.now()}`
-      setLoading(false)
+    try {
+      const courseId = await createCourse({
+        title: form.title.trim(),
+        info: form.description.trim(),
+        badgeUrl: form.bannerUrl,
+        imageUrl: form.bannerUrl,
+        mainSourceUrl: '',
+      })
+
+      if (!courseId) {
+        throw new Error(`Сервер не вернул id курса`)
+      }
+
       onClose()
       resetForm()
-      router.push(`/courses/${newId}?title=${encodeURIComponent(form.title.trim())}`)
-    }, 700)
+      router.push(`/courses/${courseId}`)
+    } catch (err) {
+      console.error('[createCourse]', err)
+      setSubmitError(err instanceof Error ? err.message : 'Ошибка при создании курса')
+      setLoading(false)
+    }
   }
 
   function resetForm() {
     setStep(1)
+    setSubmitError(null)
     setForm({
       title: '', description: '', departmentIds: [], status: 'draft',
       bannerUrl: '', bannerFile: null,
@@ -549,7 +566,13 @@ export function CreateCourseModal({ open, onClose }: CreateCourseModalProps) {
         </div>
 
         {/* ── Footer ─────────────────────────────────────────────────────── */}
-        <div className="flex items-center justify-between gap-2 px-6 py-4 border-t border-border shrink-0">
+        <div className="flex flex-col gap-2 px-6 py-4 border-t border-border shrink-0">
+          {submitError && (
+            <p className="text-[12px] text-red-600 bg-red-50 border border-red-200 rounded-xl px-3 py-2">
+              {submitError}
+            </p>
+          )}
+          <div className="flex items-center justify-between gap-2">
           {step > 1 ? (
             <button
               type="button"
@@ -597,6 +620,7 @@ export function CreateCourseModal({ open, onClose }: CreateCourseModalProps) {
               )}
             </button>
           )}
+          </div>
         </div>
       </div>
     </div>

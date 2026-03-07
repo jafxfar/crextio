@@ -144,7 +144,7 @@ export function ChapterEditor({ chapter, onChange, onDelete }: ChapterEditorProp
         <div className="px-4 pb-4 space-y-3 border-t border-border bg-secondary/10">
           {chapter.steps.length === 0 && (
             <div className="py-6 text-center text-sm text-muted-foreground">
-              No steps yet. Add your first step below.
+              Шагов пока нет. Добавьте свой первый шаг ниже.
             </div>
           )}
 
@@ -170,7 +170,7 @@ export function ChapterEditor({ chapter, onChange, onDelete }: ChapterEditorProp
             </div>
           ))}
 
-          {/* Add step buttons */}
+          {/* Добавить шаг buttons */}
           <div className="pt-1 flex flex-wrap gap-2">
             {(['info', 'video', 'question', 'file'] as StepType[]).map((type) => {
               const labels: Record<StepType, string> = { info: '+ Info', video: '+ Video', question: '+ Question', file: '+ File' }

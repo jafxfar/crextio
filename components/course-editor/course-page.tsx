@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import {
   ArrowLeft,
@@ -20,6 +20,7 @@ import type { EditorModule, EditorChapter } from '@/lib/course-editor-types'
 import { CreateModuleModal } from './create-module-modal'
 import { CreateChapterModal } from './create-chapter-modal'
 import { StepsPanel } from './steps-panel'
+import { getCourse } from '@/lib/courses-api'
 
 interface CoursePageProps {
   courseId: string
@@ -139,7 +140,7 @@ function SidebarModule({
             className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl text-[11px] font-medium text-muted-foreground/50 hover:text-muted-foreground hover:bg-accent/40 transition-colors"
           >
             <PlusCircle className="w-3 h-3" />
-            Add chapter
+            Добавить главу
           </button>
         </div>
       )}
@@ -161,12 +162,21 @@ function SidebarModule({
 // ─── Main page ────────────────────────────────────────────────────────────────
 
 export function CoursePage({ courseId, initialTitle }: CoursePageProps) {
-  const [title] = useState(initialTitle)
+  const [title, setTitle] = useState(initialTitle)
   const [activeSection, setActiveSection] = useState<'modules' | 'settings'>('modules')
   const [modules, setModules] = useState<EditorModule[]>([])
   const [selection, setSelection] = useState<Selection | null>(null)
   const [moduleModalOpen, setModuleModalOpen] = useState(false)
   const [quickChapterModuleId, setQuickChapterModuleId] = useState<number | null>(null)
+
+  // ── Load course title from API ──────────────────────────────────────────
+  useEffect(() => {
+    getCourse(Number(courseId))
+      .then((course) => {
+        if (course?.title) setTitle(course.title)
+      })
+      .catch(() => {/* keep initialTitle */})
+  }, [courseId])
 
   function handleModuleCreate(m: EditorModule) {
     setModules((prev) => [...prev, m])
@@ -265,7 +275,7 @@ export function CoursePage({ courseId, initialTitle }: CoursePageProps) {
                 className="flex items-center gap-1 px-2 py-1 rounded-lg bg-nav-pill text-white text-[10px] font-semibold hover:opacity-90 transition-opacity"
               >
                 <PlusCircle className="w-3 h-3" />
-                Module
+                Модуль
               </button>
             </div>
 
@@ -274,13 +284,13 @@ export function CoursePage({ courseId, initialTitle }: CoursePageProps) {
               {modules.length === 0 ? (
                 <div className="flex flex-col items-center justify-center py-8 text-center">
                   <GraduationCap className="w-7 h-7 text-muted-foreground/30 mb-2" />
-                  <p className="text-[11px] text-muted-foreground">No modules yet</p>
+                  <p className="text-[11px] text-muted-foreground">Модулей пока нет</p>
                   <button
                     type="button"
                     onClick={() => setModuleModalOpen(true)}
                     className="mt-2 text-[11px] text-foreground font-semibold hover:underline"
                   >
-                    Add first module
+                    Добавить первый модуль
                   </button>
                 </div>
               ) : (
@@ -302,8 +312,8 @@ export function CoursePage({ courseId, initialTitle }: CoursePageProps) {
           {/* Nav */}
           <nav className="bg-card border border-border rounded-2xl p-2 shadow-sm flex flex-col gap-1">
             {([
-              { id: 'modules', label: 'Modules', icon: Layers },
-              { id: 'settings', label: 'Settings', icon: Settings2 },
+              { id: 'modules', label: 'Модули', icon: Layers },
+              { id: 'settings', label: 'Настройки', icon: Settings2 },
             ] as const).map(({ id, label, icon: Icon }) => (
               <button
                 key={id}
@@ -346,12 +356,12 @@ export function CoursePage({ courseId, initialTitle }: CoursePageProps) {
                 <FileText className="w-7 h-7 text-foreground/40" />
               </div>
               <h3 className="text-[15px] font-bold text-foreground mb-1.5">
-                {modules.length === 0 ? 'No modules yet' : 'Select a chapter'}
+                {modules.length === 0 ? 'Модулей пока нет' : 'Выберите главу'}
               </h3>
               <p className="text-sm text-muted-foreground max-w-xs leading-relaxed">
                 {modules.length === 0
-                  ? 'Add your first module using the sidebar to start building the course.'
-                  : 'Click a chapter in the sidebar to view and edit its steps.'}
+                  ? 'Добавьте свой первый модуль, используя боковую панель, чтобы начать создание курса.Add your first module using the sidebar to start building the course.'
+                  : 'Щелкните по главе на боковой панели, чтобы просмотреть и отредактировать ее этапы.'}
               </p>
               {modules.length === 0 && (
                 <button
@@ -360,12 +370,12 @@ export function CoursePage({ courseId, initialTitle }: CoursePageProps) {
                   className="mt-5 flex items-center gap-2 px-5 py-2.5 bg-nav-pill text-white rounded-xl text-[13px] font-semibold hover:opacity-90 transition-all shadow-sm"
                 >
                   <PlusCircle className="w-4 h-4" />
-                  Add First Module
+                  Добавить Первый модуль
                 </button>
               )}
               {modules.length > 0 && (
                 <div className="mt-5 flex flex-col items-center gap-2">
-                  <p className="text-[11px] text-muted-foreground font-medium">Or create a chapter in a module:</p>
+                  <p className="text-[11px] text-muted-foreground font-medium">Или создайте главу в модуле:</p>
                   <div className="flex flex-wrap gap-2 justify-center">
                     {modules.map((m) => (
                       <button

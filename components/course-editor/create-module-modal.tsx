@@ -60,8 +60,8 @@ export function CreateModuleModal({ open, position, onClose, onCreate }: CreateM
               <Layers className="w-4 h-4 text-foreground" />
             </div>
             <div>
-              <h2 className="text-[15px] font-bold text-foreground leading-tight">New Module</h2>
-              <p className="text-[11px] text-muted-foreground mt-0.5">Module {position}</p>
+              <h2 className="text-[15px] font-bold text-foreground leading-tight">Новый модуль</h2>
+              <p className="text-[11px] text-muted-foreground mt-0.5">Модуль {position}</p>
             </div>
           </div>
           <button
@@ -77,7 +77,7 @@ export function CreateModuleModal({ open, position, onClose, onCreate }: CreateM
         <form onSubmit={handleSubmit} className="px-6 py-5 space-y-4">
           <div>
             <label className="block text-[12px] font-semibold text-foreground mb-1.5">
-              Module Title <span className="text-red-500">*</span>
+              Заголовок <span className="text-red-500">*</span>
             </label>
             <input
               autoFocus
@@ -96,7 +96,7 @@ export function CreateModuleModal({ open, position, onClose, onCreate }: CreateM
               onClick={handleClose}
               className="px-4 py-2 rounded-xl text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-accent border border-border transition-colors"
             >
-              Cancel
+              Отмена
             </button>
             <button
               type="submit"
@@ -107,9 +107,9 @@ export function CreateModuleModal({ open, position, onClose, onCreate }: CreateM
               )}
             >
               {loading ? (
-                <><Loader2 className="w-3.5 h-3.5 animate-spin" /> Creating…</>
+                <><Loader2 className="w-3.5 h-3.5 animate-spin" /> загрузка</>
               ) : (
-                'Create Module'
+                'Создать модуль'
               )}
             </button>
           </div>

@@ -167,7 +167,7 @@ export function ModuleEditor({
             className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl border border-dashed border-border text-xs font-semibold text-muted-foreground hover:text-foreground hover:border-primary/60 hover:bg-secondary transition-all"
           >
             <Plus className="w-3.5 h-3.5" />
-            Add Chapter
+            Добавить главу
           </button>
         </div>
       )}

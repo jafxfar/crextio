@@ -82,8 +82,8 @@ export function CourseOutlinePanel({ modules, onChange }: CourseOutlinePanelProp
             <Layers className="w-6 h-6 text-muted-foreground" />
           </div>
           <div>
-            <p className="text-sm font-medium text-foreground">No modules yet</p>
-            <p className="text-xs text-muted-foreground mt-1">Add your first module to start building the course</p>
+            <p className="text-sm font-medium text-foreground">Модулей пока нет</p>
+            <p className="text-xs text-muted-foreground mt-1">Добавьте свой первый модуль, чтобы начать создание курса</p>
           </div>
           <button
             type="button"
