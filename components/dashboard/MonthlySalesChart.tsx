@@ -5,6 +5,7 @@ import { MoreDotIcon } from "@/public/icons/index";
 import { DropdownItem } from "../ui/dropdown/DropdownItem";
 import { useState } from "react";
 import { Dropdown } from "../ui/dropdown/Dropdown";
+import { departments } from "@/lib/data";
 
 const ReactApexChart = dynamic(() => import("react-apexcharts"), {
   ssr: false,
@@ -38,20 +39,7 @@ export default function MonthlySalesChart() {
       colors: ["transparent"],
     },
     xaxis: {
-      categories: [
-        "Янв",
-        "Фев",
-        "Мар",
-        "Апр",
-        "Май",
-        "Июн",
-        "Июл",
-        "Авг",
-        "Сен",
-        "Окт",
-        "Ноя",
-        "Дек",
-      ],
+      categories: departments.map((d) => d.name),
       axisBorder: {
         show: false,
       },
@@ -92,8 +80,8 @@ export default function MonthlySalesChart() {
   };
   const series = [
     {
-      name: "Продажи",
-      data: [168, 385, 201, 298, 187, 195, 291, 110, 215, 390, 280, 112],
+      name: "Сотрудники",
+      data: departments.map((d) => d.headcount),
     },
   ];
   const [isOpen, setIsOpen] = useState(false);

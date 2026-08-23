@@ -1,6 +1,6 @@
 // ─── Base API Client ─────────────────────────────────────────────────────────
 
-export const API_BASE_URL = 'https://a17a-109-75-49-177.ngrok-free.app'
+export const API_BASE_URL = 'http://localhost:8002'
 
 export const TOKEN_KEY = 'access_token'
 

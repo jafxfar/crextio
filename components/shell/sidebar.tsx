@@ -79,7 +79,7 @@ export function TopNav() {
       {/* Right side actions */}
       <div className="flex items-center gap-2 shrink-0">
         {/* Settings with text */}
-        <Link href="/settings" className="flex bg-white rounded-full px-6 py-3 items-center gap-2 text-muted-foreground hover:text-foreground transition-colors">
+        <Link href="/" className="flex bg-white rounded-full px-6 py-3 items-center gap-2 text-muted-foreground hover:text-foreground transition-colors">
           <Settings className="w-4.5 h-4.5" />
           <span className="text-[15px] font-medium">Настройки</span>
         </Link>
